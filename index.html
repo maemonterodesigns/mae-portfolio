@@ -343,9 +343,9 @@
       display: flex; flex-direction: column; justify-content: space-between;
     }
     .about-headline {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(44px, 5.5vw, 80px);
-      line-height: .92; letter-spacing: -.02em;
+      font-family: 'Fraunces', serif; font-weight: 900;
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: .94; letter-spacing: -.01em;
     }
     .about-headline em {
       font-family: 'Cormorant Garamond', serif;
@@ -353,8 +353,9 @@
       color: var(--red); font-size: 1.15em;
     }
     .about-text {
-      font-size: 16px; line-height: 1.85; color: var(--black);
-      opacity: .7; max-width: 460px; margin-top: 36px; font-weight: 300;
+      font-size: 15px; line-height: 1.85; color: var(--black);
+      opacity: .7; max-width: 440px; margin-top: 36px; font-weight: 300;
+      text-wrap: balance;
     }
     .about-links { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 40px; }
     .about-link {
@@ -411,13 +412,15 @@
       display: flex; flex-direction: column; justify-content: space-between;
     }
     .contact-hl {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(52px, 6.5vw, 92px);
-      line-height: .88; color: var(--white);
+      font-family: 'Fraunces', serif; font-weight: 900;
+      font-size: clamp(44px, 5vw, 72px);
+      line-height: .95; color: var(--white);
+      max-width: 520px;
     }
     .contact-sub {
-      font-size: 16px; line-height: 1.8; color: rgba(255,255,255,.8);
-      max-width: 360px; font-weight: 300;
+      font-size: 15px; line-height: 1.8; color: rgba(255,255,255,.8);
+      max-width: 340px; font-weight: 300;
+      text-wrap: balance;
     }
 
     /* CONTACT RIGHT — cream instead of black */
@@ -774,8 +777,8 @@
 <section id="contact">
   <div class="contact-left">
     <div class="section-label" style="color:rgba(255,255,255,.5); margin-bottom:32px;">Contact</div>
-    <h2 class="contact-hl">Let's<br>Build<br>Something<br>Lasting.</h2>
-    <p class="contact-sub">I'm actively seeking full-time design opportunities where I can contribute to meaningful brand work. If you're building something worth designing, I want to hear about it.</p>
+    <h2 class="contact-hl">Let's build<br>something<br>lasting.</h2>
+    <p class="contact-sub">I'm actively seeking full-time design opportunities where I can do meaningful brand work. If you're building something worth designing — I want in.</p>
   </div>
   <div class="contact-right">
     <div class="section-label" style="margin-bottom:32px;">Get In Touch</div>
