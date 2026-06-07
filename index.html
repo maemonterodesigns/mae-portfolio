@@ -231,19 +231,7 @@
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
 
-    /* TICKER */
-    .ticker {
-      overflow: hidden; white-space: nowrap;
-      padding: 14px 0; background: var(--red); border-bottom: var(--border);
-    }
-    .ticker-track { display: inline-flex; animation: tickerMove 30s linear infinite; }
-    .ticker-item {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 13px; letter-spacing: .1em; color: var(--white);
-      padding: 0 32px;
-    }
-    .ticker-sep { color: rgba(255,255,255,.35); }
-    @keyframes tickerMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
 
     /* SECTION BAR */
     .section-bar {
@@ -631,34 +619,6 @@
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <span class="ticker-item">Brand Identity</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Repent Apparel</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Editorial Design</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Pretty Pickles</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Solange: Movement & Memory</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Book Design</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Motion Graphics</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Joosy Summer</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Tempo of Type</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Packaging Design</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Rise N' Shine</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Outlier Studios</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Brand Identity</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Repent Apparel</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Editorial Design</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Pretty Pickles</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Solange: Movement & Memory</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Book Design</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Motion Graphics</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Joosy Summer</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Tempo of Type</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Packaging Design</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Rise N' Shine</span><span class="ticker-sep"> ◆ </span>
-    <span class="ticker-item">Outlier Studios</span><span class="ticker-sep"> ◆ </span>
-  </div>
 </div>
 
 <!-- WORK -->
@@ -671,10 +631,23 @@
     <div class="work-featured">
       <div class="work-featured-grid">
 
+        <div class="project-card reveal" data-id="99">
+          <div class="card-img" style="background-image:url('images/parks-for-all.jpg')"></div>
+          <div class="card-blob"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+          <span class="card-num">01</span>
+          <span class="card-title-static">Parks for All</span>
+          <div class="card-overlay"></div>
+          <div class="card-info">
+            <p class="card-cat">Web Design · Squarespace</p>
+            <p class="card-title">Parks for All</p>
+          </div>
+          <div class="card-arrow">→</div>
+        </div>
+
         <div class="project-card reveal" data-id="0">
           <div class="card-img" style="background-image:url('images/real-estate.jpg')"></div>
           <div class="card-blob"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
-          <span class="card-num">01</span>
+          <span class="card-num">02</span>
           <span class="card-title-static">Real Estate</span>
           <div class="card-overlay"></div>
           <div class="card-info">
@@ -687,7 +660,7 @@
         <div class="project-card reveal" data-id="1">
           <div class="card-img" style="background-image:url('images/repent-apparel.jpg')"></div>
           <div class="card-blob"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
-          <span class="card-num">02</span>
+          <span class="card-num">03</span>
           <span class="card-title-static">Repent Apparel</span>
           <div class="card-overlay"></div>
           <div class="card-info">
@@ -700,7 +673,7 @@
         <div class="project-card reveal" data-id="2">
           <div class="card-img" style="background-image:url('images/poetry-collection.jpg')"></div>
           <div class="card-blob"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
-          <span class="card-num">03</span>
+          <span class="card-num">04</span>
           <span class="card-title-static">Poetry Collection</span>
           <div class="card-overlay"></div>
           <div class="card-info">
@@ -713,7 +686,7 @@
         <div class="project-card reveal" data-id="3">
           <div class="card-img" style="background-image:url('images/pretty-pickles.jpg')"></div>
           <div class="card-blob"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
-          <span class="card-num">04</span>
+          <span class="card-num">05</span>
           <span class="card-title-static">Pretty Pickles</span>
           <div class="card-overlay"></div>
           <div class="card-info">
@@ -726,7 +699,7 @@
         <div class="project-card reveal" data-id="4">
           <div class="card-img" style="background-image:url('images/solange.jpg')"></div>
           <div class="card-blob"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
-          <span class="card-num">05</span>
+          <span class="card-num">06</span>
           <span class="card-title-static">Solange</span>
           <div class="card-overlay"></div>
           <div class="card-info">
@@ -739,7 +712,7 @@
         <div class="project-card reveal" data-id="5">
           <div class="card-img" style="background-image:url('images/butchers-crossing.jpg')"></div>
           <div class="card-blob"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
-          <span class="card-num">06</span>
+          <span class="card-num">07</span>
           <span class="card-title-static">Butcher's Crossing</span>
           <div class="card-overlay"></div>
           <div class="card-info">
@@ -875,6 +848,7 @@
 
 <script>
 const projects = [
+  { title:"Parks for All", cat:"Web Design · Squarespace", year:"2025", role:"Web Designer", tools:"Squarespace, Figma, Photoshop", body:"A full website design and build for Parks for All, an organization dedicated to making green spaces accessible and equitable for every community. The project encompassed information architecture, visual design, and Squarespace development — creating a site that feels as open and welcoming as the parks it champions." },
   { title:"Real Estate", cat:"Brand Identity", year:"2024", role:"Graphic Designer", tools:"Adobe Illustrator, InDesign", body:"A comprehensive brand identity system developed for a real estate client, built around ideas of trust, aspiration, and belonging. The project included logo development, a refined color palette, and a full suite of print collateral — all designed to communicate stability and aspiration in equal measure." },
   { title:"Repent Apparel", cat:"Apparel Design", year:"2024", role:"Graphic Designer", tools:"Illustrator, Photoshop", body:"Graphic design and brand development for an independent apparel label. The work centered on creating wearable pieces with strong cultural resonance — bold in composition, deliberate in reference, and built for longevity beyond a single season." },
   { title:"Poetry Collection", cat:"Book Design", year:"2024", role:"Graphic Designer", tools:"Adobe InDesign, Illustrator", body:"A typographic book design project for a curated poetry collection. The layout system was constructed to honor the rhythm and breath of verse — generous white space, considered type pairing, and a structure that lets silence do its work." },
@@ -951,8 +925,12 @@ function close() {
   document.body.style.overflow = '';
 }
 
-document.querySelectorAll('.project-card').forEach(c => c.addEventListener('click', () => open(+c.dataset.id)));
-document.querySelectorAll('.work-list-item').forEach(c => c.addEventListener('click', () => open(+c.dataset.id)));
+document.querySelectorAll('.project-card').forEach(c => c.addEventListener('click', () => {
+  const id = +c.dataset.id;
+  if (id === 99) { open(0); } // Parks for All is index 0 in projects array
+  else open(id + 1); // shift all others by 1
+}));
+document.querySelectorAll('.work-list-item').forEach(c => c.addEventListener('click', () => open(+c.dataset.id + 1)));
 </script>
 </body>
 </html>
