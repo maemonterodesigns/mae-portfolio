@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mae Montero — Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #8B0000;
+      --red-mid: #A81010;
+      --cream: #F5F0E8;
+      --black: #0D0D0D;
+      --white: #FFFFFF;
+      --gray: #888;
+      --border: 1px solid rgba(13,13,13,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    #cursor {
+      position: fixed;
+      width: 12px; height: 12px;
+      background: var(--red);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
+      mix-blend-mode: multiply;
+    }
+    #cursor.big {
+      width: 48px; height: 48px;
+      background: var(--red);
+      opacity: 0.3;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 48px;
+      mix-blend-mode: normal;
+    }
+    nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--cream);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    nav.scrolled::before { opacity: 1; }
+    nav.scrolled { border-bottom: var(--border); }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      color: var(--black);
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      position: relative;
+      z-index: 1;
+    }
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: var(--border);
+      overflow: hidden;
+    }
+    .hero-left {
+      padding: 160px 48px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: var(--border);
+    }
+    .hero-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 32px;
+    }
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(96px, 12vw, 160px);
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      color: var(--black);
+    }
+    .hero-name span {
+      display: block;
+      color: var(--red);
+    }
+    .hero-sub {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 20px;
+      color: var(--gray);
+      margin-top: 40px;
+    }
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .hero-bio {
+      max-width: 340px;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--black);
+      opacity: 0.7;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--red);
+      padding: 16px 28px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .hero-cta:hover { background: var(--black); transform: translateY(-2px); }
+
+    .hero-right {
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-marquee-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+      overflow: hidden;
+    }
+    .marquee-row {
+      display: flex;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .marquee-inner {
+      display: flex;
+      animation: marquee 18s linear infinite;
+    }
+    .marquee-row:nth-child(even) .marquee-inner {
+      animation-direction: reverse;
+      animation-duration: 22s;
+    }
+    .marquee-word {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 6vw, 80px);
+      letter-spacing: 0.04em;
+      padding: 0 24px;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.12);
+    }
+    .marquee-word.lit {
+      color: var(--red);
+      -webkit-text-stroke: 0;
+    }
+
+    .hero-center-tag {
+      position: absolute;
+      bottom: 48px;
+      right: 48px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      writing-mode: vertical-rl;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: var(--red);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 12px 0;
+      border-bottom: var(--border);
+    }
+    .ticker-inner {
+      display: inline-flex;
+      animation: marquee 20s linear infinite;
+    }
+    .ticker-item {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      padding: 0 32px;
+    }
+    .ticker-dot {
+      color: rgba(255,255,255,0.4);
+      padding: 0 8px;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 40px 48px 32px;
+      border-bottom: var(--border);
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    .section-count {
+      font-size: 11px;
+      color: var(--gray);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── WORK GRID ── */
+    #work { border-bottom: var(--border); }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .work-item {
+      border-right: var(--border);
+      border-bottom: var(--border);
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--black);
+      cursor: none;
+    }
+    .work-item:nth-child(3n) { border-right: none; }
+
+    .work-item-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .work-item:hover .work-item-bg { transform: scale(1.04); }
+
+    /* animated placeholder backgrounds */
+    .work-item:nth-child(1) .work-item-bg { background: #1a0505; }
+    .work-item:nth-child(2) .work-item-bg { background: #0d0d0d; }
+    .work-item:nth-child(3) .work-item-bg { background: #1a0a00; }
+    .work-item:nth-child(4) .work-item-bg { background: #080d0d; }
+    .work-item:nth-child(5) .work-item-bg { background: #12001a; }
+    .work-item:nth-child(6) .work-item-bg { background: #0d0d0d; }
+    .work-item:nth-child(7) .work-item-bg { background: #1a0505; }
+    .work-item:nth-child(8) .work-item-bg { background: #000d0a; }
+    .work-item:nth-child(9) .work-item-bg { background: #1a0d00; }
+
+    .work-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .work-placeholder svg {
+      width: 48px;
+      height: 48px;
+      opacity: 0.15;
+    }
+
+    /* motion animation on cards */
+    .motion-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.5;
+      animation: blob-drift 6s ease-in-out infinite;
+    }
+    .work-item:nth-child(odd) .motion-blob { background: var(--red); width: 120px; height: 120px; top: 20%; left: 15%; animation-delay: 0s; }
+    .work-item:nth-child(even) .motion-blob { background: #5a0000; width: 100px; height: 100px; bottom: 20%; right: 20%; animation-delay: -3s; }
+
+    @keyframes blob-drift {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      33% { transform: translate(20px, -15px) scale(1.1); }
+      66% { transform: translate(-10px, 20px) scale(0.9); }
+    }
+
+    .work-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .work-item:hover .work-overlay { opacity: 1; }
+
+    .work-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    .work-item:hover .work-info { transform: translateY(0); opacity: 1; }
+
+    .work-category {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .work-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    /* index labels */
+    .work-index {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.25);
+      z-index: 2;
+    }
+
+    /* ── ABOUT SECTION ── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: var(--border);
+      min-height: 70vh;
+    }
+    .about-left {
+      padding: 80px 48px;
+      border-right: var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .about-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(60px, 7vw, 100px);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+    }
+    .about-headline em {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      color: var(--red);
+    }
+    .about-body {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--black);
+      opacity: 0.75;
+      max-width: 480px;
+    }
+    .about-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+    .about-link {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .about-link:hover { color: var(--red); border-color: var(--red); }
+
+    .about-right {
+      padding: 80px 48px;
+      background: var(--black);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-box {
+      padding: 36px 28px;
+      background: var(--black);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      line-height: 1;
+      color: var(--red);
+    }
+    .stat-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-top: 8px;
+    }
+
+    .skills-list {
+      margin-top: 48px;
+    }
+    .skills-title {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 20px;
+    }
+    .skill-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 8px 16px;
+      margin: 4px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .skill-tag:hover { background: var(--red); border-color: var(--red); }
+
+    /* ── SELECTED WORK HORIZONTAL ── */
+    .featured-strip {
+      display: flex;
+      border-bottom: var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .featured-strip::-webkit-scrollbar { display: none; }
+
+    .featured-card {
+      flex: 0 0 380px;
+      height: 260px;
+      border-right: var(--border);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .featured-card:hover { background: var(--black); }
+    .featured-card:hover .fc-num,
+    .featured-card:hover .fc-title,
+    .featured-card:hover .fc-desc { color: var(--white); }
+
+    .fc-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 64px;
+      line-height: 1;
+      color: rgba(0,0,0,0.07);
+      transition: color 0.3s;
+    }
+    .featured-card:hover .fc-num { color: var(--red); }
+
+    .fc-bottom {}
+    .fc-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      transition: color 0.3s;
+    }
+    .fc-desc {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 4px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 50vh;
+    }
+    .contact-left {
+      padding: 80px 48px;
+      border-right: var(--border);
+      background: var(--red);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .contact-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(60px, 7vw, 100px);
+      line-height: 0.88;
+      color: var(--white);
+    }
+    .contact-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      max-width: 340px;
+    }
+    .contact-email {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      padding-bottom: 4px;
+      display: inline-block;
+      transition: border-color 0.2s;
+    }
+    .contact-email:hover { border-color: var(--white); }
+
+    .contact-right {
+      padding: 80px 48px;
+      background: var(--black);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .contact-info-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 12px;
+    }
+    .contact-info-val {
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 36px;
+    }
+    .contact-info-val a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      transition: border-color 0.2s;
+    }
+    .contact-info-val a:hover { border-color: var(--red); color: var(--red); }
+
+    /* ── FOOTER ── */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      border-top: var(--border);
+      background: var(--cream);
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      color: var(--black);
+    }
+    .footer-copy {
+      font-size: 11px;
+      color: var(--gray);
+      letter-spacing: 0.08em;
+    }
+    .footer-back {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-back:hover { color: var(--red); }
+
+    /* ── FADE IN ANIMATION ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      #about { grid-template-columns: 1fr; }
+      .about-right { border-top: var(--border); }
+      .work-grid { grid-template-columns: repeat(2,1fr); }
+      .work-item:nth-child(3n) { border-right: var(--border); }
+      .work-item:nth-child(2n) { border-right: none; }
+      #contact { grid-template-columns: 1fr; }
+      .contact-right { border-top: var(--border); }
+      nav { padding: 20px 24px; }
+      .hero-left { padding: 120px 24px 60px; }
+      .section-header, .about-left, .about-right, .contact-left, .contact-right { padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Mae Montero</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://acrobat.adobe.com/id/urn:aaid:sc:us:58506357-0122-45c7-ac4e-053a95baa76c" target="_blank">Résumé ↗</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div>
+      <p class="hero-label">Graphic & Brand Designer — New Orleans, LA</p>
+      <h1 class="hero-name">
+        Mae<br>
+        <span>Mon-</span>
+        tero
+      </h1>
+      <p class="hero-sub">Intentional. Atmospheric. Made to be felt.</p>
+    </div>
+    <div class="hero-bottom">
+      <p class="hero-bio">Designer drawn to quiet details, bold type, and the spaces where clarity meets curiosity. I make work that's honest and atmospheric.</p>
+      <a href="#work" class="hero-cta">View Work →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-marquee-wrap">
+      <div class="marquee-row">
+        <div class="marquee-inner">
+          <span class="marquee-word">BRAND</span><span class="marquee-word lit">IDENTITY</span><span class="marquee-word">PRINT</span><span class="marquee-word">MOTION</span><span class="marquee-word">EDITORIAL</span><span class="marquee-word lit">TYPE</span>
+          <span class="marquee-word">BRAND</span><span class="marquee-word lit">IDENTITY</span><span class="marquee-word">PRINT</span><span class="marquee-word">MOTION</span><span class="marquee-word">EDITORIAL</span><span class="marquee-word lit">TYPE</span>
+        </div>
+      </div>
+      <div class="marquee-row">
+        <div class="marquee-inner">
+          <span class="marquee-word lit">GRAPHIC</span><span class="marquee-word">LAYOUT</span><span class="marquee-word">POSTER</span><span class="marquee-word lit">CAMPAIGN</span><span class="marquee-word">VISUAL</span><span class="marquee-word">SYSTEM</span>
+          <span class="marquee-word lit">GRAPHIC</span><span class="marquee-word">LAYOUT</span><span class="marquee-word">POSTER</span><span class="marquee-word lit">CAMPAIGN</span><span class="marquee-word">VISUAL</span><span class="marquee-word">SYSTEM</span>
+        </div>
+      </div>
+      <div class="marquee-row">
+        <div class="marquee-inner">
+          <span class="marquee-word">PACKAGE</span><span class="marquee-word lit">APPAREL</span><span class="marquee-word">PHOTO</span><span class="marquee-word">BOOK</span><span class="marquee-word lit">DESIGN</span><span class="marquee-word">CULTURE</span>
+          <span class="marquee-word">PACKAGE</span><span class="marquee-word lit">APPAREL</span><span class="marquee-word">PHOTO</span><span class="marquee-word">BOOK</span><span class="marquee-word lit">DESIGN</span><span class="marquee-word">CULTURE</span>
+        </div>
+      </div>
+    </div>
+    <span class="hero-center-tag">Portfolio 2025</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Real Estate</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Repent Apparel</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Poetry Collection</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Pretty Pickles</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Solange: Movement & Memory</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Butcher's Crossing</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Clements Insurance</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Meow Mix</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Joosy Summer</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Tempo of Type</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Outlier Studios</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Rise N' Shine</span><span class="ticker-dot">◆</span>
+    <!-- duplicate for infinite loop -->
+    <span class="ticker-item">Real Estate</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Repent Apparel</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Poetry Collection</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Pretty Pickles</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Solange: Movement & Memory</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Butcher's Crossing</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Clements Insurance</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Meow Mix</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Joosy Summer</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Tempo of Type</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Outlier Studios</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Rise N' Shine</span><span class="ticker-dot">◆</span>
+  </div>
+</div>
+
+<!-- WORK SECTION -->
+<section id="work">
+  <div class="section-header">
+    <span class="section-title">Selected Work</span>
+    <span class="section-count">26 Projects</span>
+  </div>
+  <div class="work-grid">
+
+    <div class="work-item fade-up">
+      <div class="work-item-bg">
+        <div class="motion-blob"></div>
+        <div class="work-placeholder">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="40" height="32" rx="2" stroke="white" stroke-width="1.5"/><path d="M4 16h40" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <span class="work-index">01</span>
+      <div class="work-overlay"></div>
+      <div class="work-info">
+        <p class="work-category">Brand Identity</p>
+        <p class="work-name">Real Estate</p>
+      </div>
+    </div>
+
+    <div class="work-item fade-up">
+      <div class="work-item-bg">
+        <div class="motion-blob"></div>
+        <div class="work-placeholder">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 6L30 18H42L32 26L36 38L24 30L12 38L16 26L6 18H18L24 6Z" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <span class="work-index">02</span>
+      <div class="work-overlay"></div>
+      <div class="work-info">
+        <p class="work-category">Apparel Design</p>
+        <p class="work-name">Repent Apparel</p>
+      </div>
+    </div>
+
+    <div class="work-item fade-up">
+      <div class="work-item-bg">
+        <div class="motion-blob"></div>
+        <div class="work-placeholder">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="32" height="32" rx="16" stroke="white" stroke-width="1.5"/><path d="M16 24h16M24 16v16" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <span class="work-index">03</span>
+      <div class="work-overlay"></div>
+      <div class="work-info">
+        <p class="work-category">Print / Poster</p>
+        <p class="work-name">Call for Submission</p>
+      </div>
+    </div>
+
+    <div class="work-item fade-up">
+      <div class="work-item-bg">
+        <div class="motion-blob"></div>
+        <div class="work-placeholder">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 8h24v32H12z" stroke="white" stroke-width="1.5"/><path d="M16 16h16M16 22h12M16 28h8" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <span class="work-index">04</span>
+      <div class="work-overlay"></div>
+      <div class="work-info">
+        <p class="work-category">Book Design</p>
+        <p class="work-name">Poetry Collection</p>
+      </div>
+    </div>
+
+    <div class="work-item fade-up">
+      <div class="work-item-bg">
+        <div class="motion-blob"></div>
+        <div class="work-placeholder">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="24" cy="28" rx="14" ry="10" stroke="white" stroke-width="1.5"/><path d="M10 24c0-5.523 6.268-10 14-10s14 4.477 14 10" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <span class="work-index">05</span>
+      <div class="work-overlay"></div>
+      <div class="work-info">
+        <p class="work-category">Packaging</p>
+        <p class="work-name">Pretty Pickles</p>
+      </div>
+    </div>
+
+    <div class="work-item fade-up">
+      <div class="work-item-bg">
+        <div class="motion-blob"></div>
+        <div class="work-placeholder">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="14" stroke="white" stroke-width="1.5"/><path d="M24 10v14l8 8" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <span class="work-index">06</span>
+      <div class="work-overlay"></div>
+      <div class="work-info">
+        <p class="work-category">Editorial</p>
+        <p class="work-name">Solange: Movement & Memory</p>
+      </div>
+    </div>
+
+    <div class="work-item fade-up">
+      <div class="work-item-bg">
+        <div class="motion-blob"></div>
+        <div class="work-placeholder">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 12h32M8 20h24M8 28h28M8 36h20" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <span class="work-index">07</span>
+      <div class="work-overlay"></div>
+      <div class="work-info">
+        <p class="work-category">Book Cover</p>
+        <p class="work-name">Butcher's Crossing</p>
+      </div>
+    </div>
+
+    <div class="work-item fade-up">
+      <div class="work-item-bg">
+        <div class="motion-blob"></div>
+        <div class="work-placeholder">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 40L24 8l18 32H6z" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <span class="work-index">08</span>
+      <div class="work-overlay"></div>
+      <div class="work-info">
+        <p class="work-category">Photography / Layout</p>
+        <p class="work-name">Budapest</p>
+      </div>
+    </div>
+
+    <div class="work-item fade-up">
+      <div class="work-item-bg">
+        <div class="motion-blob"></div>
+        <div class="work-placeholder">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="14" width="32" height="20" rx="2" stroke="white" stroke-width="1.5"/><path d="M16 34v4M32 34v4M12 38h24" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+      <span class="work-index">09</span>
+      <div class="work-overlay"></div>
+      <div class="work-info">
+        <p class="work-category">Advertising</p>
+        <p class="work-name">Clements Insurance Ad</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURED HORIZONTAL STRIP -->
+<div class="section-header">
+  <span class="section-title">More Projects</span>
+  <span class="section-count">Scroll →</span>
+</div>
+<div class="featured-strip">
+  <div class="featured-card fade-up">
+    <div class="fc-num">10</div>
+    <div class="fc-bottom">
+      <div class="fc-title">Meow Mix</div>
+      <div class="fc-desc">Brand / Packaging</div>
+    </div>
+  </div>
+  <div class="featured-card fade-up">
+    <div class="fc-num">11</div>
+    <div class="fc-bottom">
+      <div class="fc-title">Book Sale</div>
+      <div class="fc-desc">Print / Poster</div>
+    </div>
+  </div>
+  <div class="featured-card fade-up">
+    <div class="fc-num">12</div>
+    <div class="fc-bottom">
+      <div class="fc-title">Wedding Invitation</div>
+      <div class="fc-desc">Print / Stationery</div>
+    </div>
+  </div>
+  <div class="featured-card fade-up">
+    <div class="fc-num">13</div>
+    <div class="fc-bottom">
+      <div class="fc-title">Hurricane Milton</div>
+      <div class="fc-desc">Motion / News</div>
+    </div>
+  </div>
+  <div class="featured-card fade-up">
+    <div class="fc-num">14</div>
+    <div class="fc-bottom">
+      <div class="fc-title">Spring Swing</div>
+      <div class="fc-desc">Event Design</div>
+    </div>
+  </div>
+  <div class="featured-card fade-up">
+    <div class="fc-num">15</div>
+    <div class="fc-bottom">
+      <div class="fc-title">Joosy Summer</div>
+      <div class="fc-desc">Brand Campaign</div>
+    </div>
+  </div>
+  <div class="featured-card fade-up">
+    <div class="fc-num">16</div>
+    <div class="fc-bottom">
+      <div class="fc-title">Tempo of Type</div>
+      <div class="fc-desc">Typography</div>
+    </div>
+  </div>
+  <div class="featured-card fade-up">
+    <div class="fc-num">17</div>
+    <div class="fc-bottom">
+      <div class="fc-title">Outlier Studios</div>
+      <div class="fc-desc">Brand Identity</div>
+    </div>
+  </div>
+  <div class="featured-card fade-up">
+    <div class="fc-num">18</div>
+    <div class="fc-bottom">
+      <div class="fc-title">Rise N' Shine</div>
+      <div class="fc-desc">Brand / Packaging</div>
+    </div>
+  </div>
+  <div class="featured-card fade-up">
+    <div class="fc-num">19</div>
+    <div class="fc-bottom">
+      <div class="fc-title">Sonic Youth</div>
+      <div class="fc-desc">Poster Design</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left">
+    <div>
+      <div class="section-title" style="margin-bottom:32px;">About</div>
+      <h2 class="about-headline">Design<br>as a <em>felt</em><br>language.</h2>
+    </div>
+    <div>
+      <p class="about-body">
+        I'm Mae Montero, a designer drawn to quiet details, intentional choices, and the spaces where clarity meets curiosity. I'm most interested in the in-between: where structure becomes softness, where type turns into tone, where layout starts to feel like language.
+        <br><br>
+        My work often begins with a feeling — an idea that unfolds through research, intuition, and form. White space, rhythm, and restraint play a big role in how I build. I believe what's left unsaid can be just as powerful as what's shown.
+      </p>
+      <div class="about-links">
+        <a href="http://www.linkedin.com/in/maegan-montero-b4ba0522b" class="about-link" target="_blank">LinkedIn ↗</a>
+        <a href="https://www.instagram.com/maemonterodesigns/" class="about-link" target="_blank">Instagram ↗</a>
+        <a href="https://acrobat.adobe.com/id/urn:aaid:sc:us:58506357-0122-45c7-ac4e-053a95baa76c" class="about-link" target="_blank">Résumé ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="about-stats">
+      <div class="stat-box">
+        <div class="stat-number">26</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">BA</div>
+        <div class="stat-label">Graphic Design, Loyola NOLA</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">NOLA</div>
+        <div class="stat-label">Based In</div>
+      </div>
+    </div>
+    <div class="skills-list">
+      <div class="skills-title">Tools & Skills</div>
+      <span class="skill-tag">Adobe InDesign</span>
+      <span class="skill-tag">Illustrator</span>
+      <span class="skill-tag">Photoshop</span>
+      <span class="skill-tag">After Effects</span>
+      <span class="skill-tag">Figma</span>
+      <span class="skill-tag">Brand Identity</span>
+      <span class="skill-tag">Typography</span>
+      <span class="skill-tag">Print Design</span>
+      <span class="skill-tag">Motion Graphics</span>
+      <span class="skill-tag">Packaging</span>
+      <span class="skill-tag">Editorial</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left">
+    <div class="section-title" style="color:rgba(255,255,255,0.5); margin-bottom:32px;">Contact</div>
+    <h2 class="contact-headline">Let's<br>Make<br>Something.</h2>
+    <p class="contact-sub">Open to full-time design roles, freelance projects, and creative collaborations. Based in New Orleans — available anywhere.</p>
+  </div>
+  <div class="contact-right">
+    <div>
+      <div class="section-title" style="color:rgba(255,255,255,0.3); margin-bottom:32px;">Get In Touch</div>
+      <div>
+        <div class="contact-info-label">Email</div>
+        <div class="contact-info-val">
+          <a href="mailto:maemonterodesigns@gmail.com">maemonterodesigns@gmail.com</a>
+        </div>
+        <div class="contact-info-label">Instagram</div>
+        <div class="contact-info-val">
+          <a href="https://www.instagram.com/maemonterodesigns/" target="_blank">@maemonterodesigns</a>
+        </div>
+        <div class="contact-info-label">LinkedIn</div>
+        <div class="contact-info-val">
+          <a href="http://www.linkedin.com/in/maegan-montero-b4ba0522b" target="_blank">Maegan Montero</a>
+        </div>
+      </div>
+    </div>
+    <a href="mailto:maemonterodesigns@gmail.com" class="hero-cta" style="align-self:flex-start; margin-top:40px;">Send a Message →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Mae Montero</span>
+  <span class="footer-copy">© 2025 — Graphic & Brand Designer</span>
+  <a href="#" class="footer-back">Back to Top ↑</a>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, .work-item, .featured-card, .skill-tag').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  });
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
