@@ -30,6 +30,49 @@
       cursor: none;
       overflow-x: hidden;
     }
+    /* grain texture overlay — site wide */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 1000;
+      pointer-events: none;
+      opacity: .032;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    /* SECTION WATERMARKS */
+    .section-watermark {
+      position: absolute;
+      bottom: -20px; right: -16px;
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(80px, 10vw, 140px);
+      line-height: 1; letter-spacing: -.04em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(139,0,0,0.07);
+      pointer-events: none; user-select: none;
+      white-space: nowrap; z-index: 0;
+    }
+    /* decorative grain on dark card backgrounds */
+    .project-card::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      pointer-events: none;
+      opacity: .06;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 150px 150px;
+    }
+    /* decorative thin red accent lines */
+    .section-bar {
+      position: relative;
+    }
+    .section-bar::after {
+      content: '';
+      position: absolute; bottom: 0; left: 52px;
+      width: 32px; height: 2px;
+      background: var(--red);
+    }
 
     /* CURSOR */
     #cursor {
@@ -111,14 +154,20 @@
     }
     /* large background watermark */
     .hero-watermark {
-      position: absolute; bottom: -60px; right: -20px;
+      position: absolute; bottom: -40px; right: -10px;
       font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(200px, 28vw, 400px);
-      line-height: 1; letter-spacing: -.04em;
+      font-size: clamp(240px, 32vw, 480px);
+      line-height: 1; letter-spacing: -.05em;
       color: transparent;
-      -webkit-text-stroke: 1px rgba(139,0,0,0.07);
+      -webkit-text-stroke: 1.5px rgba(139,0,0,0.09);
       pointer-events: none; user-select: none; z-index: 0;
       white-space: nowrap;
+      /* subtle animation */
+      animation: wmDrift 18s ease-in-out infinite;
+    }
+    @keyframes wmDrift {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
     }
 
     .hero-content { position: relative; z-index: 2; }
@@ -728,7 +777,8 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-left">
+  <div class="about-left" style="position:relative; overflow:hidden;">
+    <div class="section-watermark" aria-hidden="true">ABOUT</div>
     <div>
       <div class="section-label" style="margin-bottom:32px;">About</div>
       <h2 class="about-headline">Design<br>as a <em>felt</em><br>language.</h2>
@@ -778,7 +828,8 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="contact-left">
+  <div class="contact-left" style="position:relative; overflow:hidden;">
+    <div class="section-watermark" aria-hidden="true" style="-webkit-text-stroke-color: rgba(255,255,255,0.07);">CONTACT</div>
     <div class="section-label" style="color:rgba(255,255,255,.5); margin-bottom:32px;">Contact</div>
     <h2 class="contact-hl">Let's build<br>something<br>lasting.</h2>
     <p class="contact-sub">I'm actively seeking full-time design opportunities where I can do meaningful brand work. If you're building something worth designing — I want in.</p>
