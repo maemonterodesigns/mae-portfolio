@@ -7,7 +7,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Dancing+Script:wght@700&family=Birthstone&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Birthstone&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -943,8 +943,8 @@ function close() {
 
 document.querySelectorAll('.project-card').forEach(c => c.addEventListener('click', () => {
   const id = +c.dataset.id;
-  if (id === 99) { open(0); } // Parks for All is index 0 in projects array
-  else open(id + 1); // shift all others by 1
+  if (id === 99) { open(0); }
+  else open(id + 1);
 }));
 document.querySelectorAll('.work-list-item').forEach(c => c.addEventListener('click', () => open(+c.dataset.id + 1)));
 
@@ -1032,22 +1032,19 @@ document.querySelectorAll('.work-list-item').forEach(c => c.addEventListener('cl
           var el  = item.el;
           var len = el.getTotalLength();
           if (!len) return;
-          var dur = len / SPEED; /* seconds */
+          var dur = len / SPEED;
 
           if (item.wi > prevWi) { delay += WORD_GAP; prevWi = item.wi; }
 
-          /* initial hidden state */
           el.style.strokeDasharray  = len;
           el.style.strokeDashoffset = len;
 
-          /* draw stroke */
           ;(function (pathEl, startS, durS, color) {
             setTimeout(function () {
               pathEl.style.transition = 'stroke-dashoffset ' + durS.toFixed(3) + 's linear';
               pathEl.style.strokeDashoffset = '0';
             }, startS * 1000);
 
-            /* after stroke: fill in */
             setTimeout(function () {
               pathEl.style.transition = 'fill 0.18s ease, stroke-width 0.18s ease';
               pathEl.style.fill        = color;
