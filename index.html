@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mae Montero — Graphic & Brand Designer</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Dancing+Script:wght@700&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Dancing+Script:wght@700&family=Birthstone&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -173,27 +174,41 @@
     .hero-eyebrow {
       font-size: 12px; font-weight: 400; letter-spacing: .2em;
       text-transform: uppercase; color: var(--gray);
-      margin-bottom: 28px;
+      margin-bottom: 28px; padding-top: 48px;
       opacity: 0; animation: fadeUp .7s .2s ease forwards;
     }
     .hero-name {
-      font-family: 'Fraunces', serif; font-weight: 900;
-      font-size: clamp(90px, 13vw, 190px);
-      line-height: .88; letter-spacing: -.03em;
+      font-family: 'Birthstone', cursive; font-weight: 400;
+      font-size: clamp(90px, 12.5vw, 185px);
+      line-height: 0.75; letter-spacing: -0.01em;
       color: var(--black); display: block;
-      overflow: hidden;
+      overflow: visible;
+      filter: url(#ink-texture);
+      visibility: hidden; /* replaced by SVG once opentype loads */
+    }
+    .hero-name-svg {
+      display: block; width: 100%; overflow: visible;
+      filter: url(#ink-texture);
     }
     .hero-name .line {
       display: block; overflow: hidden;
     }
     .hero-name .line-inner {
       display: block;
-      opacity: 0; transform: translateY(100%);
-      animation: slideUp .8s cubic-bezier(.22,1,.36,1) forwards;
+      clip-path: inset(0 100% 0 0);
+      animation: writeReveal linear forwards;
     }
-    .hero-name .line:nth-child(1) .line-inner { animation-delay: .15s; }
-    .hero-name .line:nth-child(2) .line-inner { animation-delay: .3s; }
+    .hero-name .line:nth-child(1) .line-inner {
+      animation-duration: 3.5s; animation-delay: .4s;
+    }
+    .hero-name .line:nth-child(2) .line-inner {
+      animation-duration: 5.0s; animation-delay: 4.0s;
+    }
     .hero-name .accent { color: var(--red); }
+    @keyframes writeReveal {
+      0%   { clip-path: inset(0 100% 0 0); }
+      100% { clip-path: inset(0 0%   0 0); }
+    }
 
     .hero-rule {
       width: 0; height: 1px; background: var(--red);
@@ -229,7 +244,6 @@
     }
 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-    @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
 
 
 
@@ -585,6 +599,17 @@
   </style>
 </head>
 <body>
+<!-- Ink texture filter for hero name -->
+<svg style="display:none" aria-hidden="true">
+  <defs>
+    <filter id="ink-texture" x="-2%" y="-5%" width="104%" height="115%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035 0.065" numOctaves="4" seed="5" stitchTiles="stitch" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+      <feComposite in="displaced" in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
 <div id="cursor"></div>
 
 <!-- NAV -->
@@ -605,8 +630,8 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Graphic & Brand Designer — New Orleans, LA</p>
     <h1 class="hero-name">
-      <span class="line"><span class="line-inner">MAE</span></span>
-      <span class="line"><span class="line-inner accent">MONTERO</span></span>
+      <span class="line"><span class="line-inner">Mae</span></span>
+      <span class="line"><span class="line-inner accent">Montero</span></span>
     </h1>
     <div class="hero-rule"></div>
     <div class="hero-bottom">
@@ -922,6 +947,120 @@ document.querySelectorAll('.project-card').forEach(c => c.addEventListener('clic
   else open(id + 1); // shift all others by 1
 }));
 document.querySelectorAll('.work-list-item').forEach(c => c.addEventListener('click', () => open(+c.dataset.id + 1)));
+
+/* ── SVG handwriting animation ── */
+(function () {
+  var FONT_URL  = 'https://fonts.gstatic.com/s/birthstone/v16/8AtsGs2xO4yLRhy87sv_HLk.ttf';
+  var FONT_PX   = 165;
+  var LINE_GAP  = -45;  // px between Mae and Montero baselines (on top of font height)
+  var STROKE_W  = 4;
+  var SPEED     = 380;  // font-pixels per second
+  var WORD_GAP  = 0.45; // seconds between the two words
+  var NS        = 'http://www.w3.org/2000/svg';
+
+  var words = [
+    { text: 'Mae',     color: '#1A1410' },
+    { text: 'Montero', color: '#8B0000' }
+  ];
+
+  function fallback() {
+    var n = document.querySelector('.hero-name');
+    if (n) n.style.visibility = 'visible';
+  }
+
+  if (typeof opentype === 'undefined') { fallback(); return; }
+
+  opentype.load(FONT_URL, function (err, font) {
+    if (err) { fallback(); return; }
+
+    var allGlyphs = [];
+
+    words.forEach(function (word, wi) {
+      var x = 0;
+      var baseY = FONT_PX + wi * (FONT_PX + LINE_GAP);
+      word.text.split('').forEach(function (ch) {
+        var glyph = font.charToGlyph(ch);
+        var path  = glyph.getPath(x, baseY, FONT_PX);
+        allGlyphs.push({ path: path, color: word.color, wi: wi });
+        x += (glyph.advanceWidth / font.unitsPerEm) * FONT_PX;
+      });
+    });
+
+    /* viewBox */
+    var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    allGlyphs.forEach(function (g) {
+      var b = g.path.getBoundingBox();
+      if (b.x1 < minX) minX = b.x1; if (b.y1 < minY) minY = b.y1;
+      if (b.x2 > maxX) maxX = b.x2; if (b.y2 > maxY) maxY = b.y2;
+    });
+    var P = 10;
+    var vbX = minX - P, vbY = minY - P, vbW = maxX - minX + P*2, vbH = maxY - minY + P*2;
+
+    /* build SVG */
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', [vbX, vbY, vbW, vbH].join(' '));
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Mae Montero');
+    svg.className = 'hero-name-svg';
+    svg.style.maxWidth = vbW + 'px';
+
+    var pathEls = [];
+    allGlyphs.forEach(function (g) {
+      var el = document.createElementNS(NS, 'path');
+      el.setAttribute('d', g.path.toPathData(2));
+      el.setAttribute('fill', 'none');
+      el.setAttribute('stroke', g.color);
+      el.setAttribute('stroke-width', String(STROKE_W));
+      el.setAttribute('stroke-linecap', 'round');
+      el.setAttribute('stroke-linejoin', 'round');
+      svg.appendChild(el);
+      pathEls.push({ el: el, color: g.color, wi: g.wi });
+    });
+
+    /* swap h1 → svg */
+    var h1 = document.querySelector('.hero-name');
+    h1.parentNode.insertBefore(svg, h1);
+    h1.parentNode.removeChild(h1);
+
+    /* sequence animations */
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        var delay = 0.4;
+        var prevWi = 0;
+
+        pathEls.forEach(function (item) {
+          var el  = item.el;
+          var len = el.getTotalLength();
+          if (!len) return;
+          var dur = len / SPEED; /* seconds */
+
+          if (item.wi > prevWi) { delay += WORD_GAP; prevWi = item.wi; }
+
+          /* initial hidden state */
+          el.style.strokeDasharray  = len;
+          el.style.strokeDashoffset = len;
+
+          /* draw stroke */
+          ;(function (pathEl, startS, durS, color) {
+            setTimeout(function () {
+              pathEl.style.transition = 'stroke-dashoffset ' + durS.toFixed(3) + 's linear';
+              pathEl.style.strokeDashoffset = '0';
+            }, startS * 1000);
+
+            /* after stroke: fill in */
+            setTimeout(function () {
+              pathEl.style.transition = 'fill 0.18s ease, stroke-width 0.18s ease';
+              pathEl.style.fill        = color;
+              pathEl.style.strokeWidth = '0';
+            }, (startS + durS) * 1000);
+          })(el, delay, dur, item.color);
+
+          delay += dur;
+        });
+      });
+    });
+  });
+})();
 </script>
 </body>
 </html>
