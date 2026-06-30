@@ -353,6 +353,8 @@
       border-radius: 10px 10px 0 0;
       overflow: hidden;
       box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
     }
     .site-browser-bar {
       background: #2a2a3e;
@@ -384,11 +386,12 @@
     }
     .site-screenshot {
       width: 100%;
-      height: 360px;
+      flex: 1;
       display: block;
       border: none;
       object-fit: cover;
       object-position: top center;
+      min-height: 0;
     }
 
     /* Right side: text content */
@@ -766,9 +769,8 @@
         -->
 
         <a href="https://nolaparksforall.org" target="_blank" rel="noopener" class="work-card fade-in">
-          <div class="work-card-img" style="background-color: #ffffff; display: flex; align-items: center; justify-content: center; padding: 24px;">
-            <img src="https://images.squarespace-cdn.com/content/v1/69827dbaed0ced762e72557e/54ed778f-913a-46b6-ac90-cc83dd7a4505/FD9DC565-3175-4AA8-858D-80C287B7ADBF.webp?format=1500w" alt="Nola Parks for All logo" style="width: 100%; height: 100%; object-fit: contain;">
-            <span class="work-card-tag" style="position: absolute; bottom: 12px; left: 12px; background: rgba(15,110,86,0.9); color: white;">Web design</span>
+          <div class="work-card-img" style="background-color: #0F6E56; background-image: url('images/nola-parks-screenshot.jpg'); background-size: cover; background-position: top center;">
+            <span class="work-card-tag" style="background: rgba(15,110,86,0.9); color: white;">Web design</span>
           </div>
           <div class="work-card-body">
             <p class="work-card-title">Nola Parks for All</p>
