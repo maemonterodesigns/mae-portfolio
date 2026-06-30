@@ -1,1063 +1,1112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mae Montero — Graphic & Brand Designer</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Birthstone&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mae Montero — Graphic Designer</title>
+  <meta name="description" content="Mae Montero is a graphic designer specializing in brand identity, web design, and print based in New Orleans, LA.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ─────────────────────────────────────────────
+       DESIGN TOKENS
+       To change the color scheme, edit these values.
+    ───────────────────────────────────────────── */
     :root {
-      --red: #8B0000;
-      --red-mid: #A81515;
-      --red-light: #C0392B;
-      --cream: #F4EDE0;
-      --cream-dark: #EDE4D3;
-      --black: #1A1410;
-      --white: #FFFFFF;
-      --gray: #888;
-      --gray-light: #bbb;
-      --border: 1px solid rgba(13,13,13,0.13);
-      --border-light: 1px solid rgba(13,13,13,0.07);
+      --cream:        #F5F0E8;   /* page background */
+      --cream-dark:   #EDE8DF;   /* subtle card background */
+      --ink:          #1A1612;   /* primary text / dark elements */
+      --ink-light:    #6B6560;   /* secondary text */
+      --ink-muted:    #A39F9A;   /* captions, labels */
+      --green:        #0F6E56;   /* accent color (from Nola Parks) */
+      --green-light:  #E1F0EB;   /* light green tint for chips */
+      --border:       #DDD8CF;   /* all borders */
+      --white:        #FFFFFF;
+      --radius:       10px;
+      --font-serif:   'Cormorant Garamond', Georgia, serif;
+      --font-sans:    'DM Sans', system-ui, -apple-system, sans-serif;
+      --max-width:    1100px;
+    }
+
+
+    /* ─────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-sans);
       background: var(--cream);
-      color: var(--black);
-      cursor: none;
-      overflow-x: hidden;
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    /* grain texture overlay — site wide */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 1000;
-      pointer-events: none;
-      opacity: .032;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 200px 200px;
-    }
-
-    /* SECTION WATERMARKS */
-    .section-watermark {
-      position: absolute;
-      bottom: -20px; right: -16px;
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(80px, 10vw, 140px);
-      line-height: 1; letter-spacing: -.04em;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(139,0,0,0.07);
-      pointer-events: none; user-select: none;
-      white-space: nowrap; z-index: 0;
-    }
-    /* decorative grain on dark card backgrounds */
-    .project-card::after {
-      content: '';
-      position: absolute; inset: 0; z-index: 1;
-      pointer-events: none;
-      opacity: .06;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 150px 150px;
-    }
-    /* decorative thin red accent lines */
-    .section-bar {
-      position: relative;
-    }
-    .section-bar::after {
-      content: '';
-      position: absolute; bottom: 0; left: 52px;
-      width: 32px; height: 2px;
-      background: var(--red);
-    }
-
-    /* CURSOR */
-    #cursor {
-      position: fixed; width: 10px; height: 10px;
-      background: var(--red); border-radius: 50%;
-      pointer-events: none; z-index: 9999;
-      transform: translate(-50%,-50%);
-      transition: width .25s ease, height .25s ease, opacity .2s;
-      mix-blend-mode: multiply;
-    }
-    #cursor.grow { width: 48px; height: 48px; opacity: .25; }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 28px 52px;
-      transition: background .3s, border-bottom .3s, padding .3s;
-    }
-    nav.scrolled {
-      background: var(--cream);
-      border-bottom: var(--border);
-      padding: 18px 52px;
-    }
-    .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800; font-size: 28px;
-      letter-spacing: -.03em; color: var(--black);
-      text-decoration: none; line-height: 1;
-      position: relative; display: inline-flex;
-      align-items: center; gap: 2px;
-    }
-    .nav-logo .mm-m1 {
-      display: inline-block;
-      opacity: 0; transform: translateX(-10px);
-      animation: mmIn .6s .2s cubic-bezier(.22,1,.36,1) forwards;
-    }
-    .nav-logo .mm-m2 {
-      display: inline-block; color: var(--red);
-      opacity: 0; transform: translateX(10px);
-      animation: mmIn .6s .35s cubic-bezier(.22,1,.36,1) forwards;
-    }
-    @keyframes mmIn { to { opacity: 1; transform: translateX(0); } }
-    .nav-logo:hover .mm-m1 { color: var(--red); transition: color .2s; }
-    .nav-logo:hover .mm-m2 { color: var(--black); transition: color .2s; }
-    .nav-logo span { color: var(--red); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a {
-      font-family: 'Syne', sans-serif;
-      font-size: 13px; font-weight: 700; letter-spacing: .06em;
-      color: var(--black); text-decoration: none;
-      transition: color .2s; position: relative;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
-      height: 1px; background: var(--red);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform .25s ease;
-    }
-    .nav-links a:hover { color: var(--red); }
-    .nav-links a:hover::after { transform: scaleX(1); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 0 52px 64px;
-      border-bottom: var(--border);
-      position: relative; overflow: hidden;
-      background: var(--cream);
-    }
-    .hero-vertical-label {
-      position: absolute; top: 50%; right: 52px;
-      transform: translateY(-50%) rotate(90deg);
-      transform-origin: center center;
-      font-size: 11px; font-weight: 400; letter-spacing: .22em;
-      text-transform: uppercase; color: var(--gray);
-      white-space: nowrap;
-    }
-    /* large background watermark */
-    .hero-watermark {
-      position: absolute; bottom: -60px; right: -20px;
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(280px, 38vw, 560px);
-      line-height: 1; letter-spacing: -.05em;
-      color: rgba(139,0,0,0.055);
-      -webkit-text-stroke: 2px rgba(139,0,0,0.13);
-      pointer-events: none; user-select: none; z-index: 0;
-      white-space: nowrap;
-      animation: wmDrift 18s ease-in-out infinite;
-    }
-    @keyframes wmDrift {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-14px); }
-    }
-
-    .hero-content { position: relative; z-index: 2; }
-    .hero-eyebrow {
-      font-size: 12px; font-weight: 400; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--gray);
-      margin-bottom: 28px; padding-top: 48px;
-      opacity: 0; animation: fadeUp .7s .2s ease forwards;
-    }
-    .hero-name {
-      font-family: 'Birthstone', cursive; font-weight: 400;
-      font-size: clamp(90px, 12.5vw, 185px);
-      line-height: 0.75; letter-spacing: -0.01em;
-      color: var(--black); display: block;
-      overflow: visible;
-      filter: url(#ink-texture);
-      visibility: hidden; /* replaced by SVG once opentype loads */
-    }
-    .hero-name-svg {
-      display: block; width: 100%; overflow: visible;
-      filter: url(#ink-texture);
-    }
-    .hero-name .line {
-      display: block; overflow: hidden;
-    }
-    .hero-name .line-inner {
-      display: block;
-      clip-path: inset(0 100% 0 0);
-      animation: writeReveal linear forwards;
-    }
-    .hero-name .line:nth-child(1) .line-inner {
-      animation-duration: 3.5s; animation-delay: .4s;
-    }
-    .hero-name .line:nth-child(2) .line-inner {
-      animation-duration: 5.0s; animation-delay: 4.0s;
-    }
-    .hero-name .accent { color: var(--red); }
-    @keyframes writeReveal {
-      0%   { clip-path: inset(0 100% 0 0); }
-      100% { clip-path: inset(0 0%   0 0); }
-    }
-
-    .hero-rule {
-      width: 0; height: 1px; background: var(--red);
-      margin: 36px 0;
-      animation: ruleGrow .9s .8s ease forwards;
-    }
-    @keyframes ruleGrow { to { width: 80px; } }
-
-    .hero-bottom {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      gap: 48px;
-      opacity: 0; animation: fadeUp .8s 1s ease forwards;
-    }
-    .hero-bio {
-      max-width: 460px;
-      font-size: 16px; line-height: 1.8; color: var(--black); opacity: .65;
-      font-weight: 300;
-    }
-    .hero-cta-group { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 12px; font-weight: 500; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--white);
-      background: var(--red); padding: 16px 32px;
-      text-decoration: none; cursor: none;
-      transition: background .2s, transform .2s;
-      white-space: nowrap;
-    }
-    .btn-primary:hover { background: var(--black); transform: translateY(-2px); }
-    .hero-scroll-hint {
-      font-size: 11px; font-weight: 400; letter-spacing: .18em;
-      text-transform: uppercase; color: var(--gray);
-    }
-
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 
-
-    /* SECTION BAR */
-    .section-bar {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 24px 52px; border-bottom: var(--border);
+    /* ─────────────────────────────────────────────
+       LAYOUT UTILITIES
+    ───────────────────────────────────────────── */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 2rem;
     }
     .section-label {
-      font-size: 11px; font-weight: 500; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--gray);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-weight: 400;
     }
-    .section-count { font-size: 11px; color: var(--gray); }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
 
-    /* WORK LAYOUT */
-    #work { border-bottom: var(--border); }
-    .work-layout {
-      display: grid; grid-template-columns: 1fr 360px;
-    }
-    .work-featured { border-right: var(--border); }
-    .work-featured-grid { display: grid; grid-template-columns: 1fr 1fr; }
 
-    /* PROJECT CARD */
-    .project-card {
-      position: relative; overflow: hidden;
-      aspect-ratio: 4/3; background: #1A0A08;
-      border-right: var(--border); border-bottom: var(--border);
-      cursor: none;
+    /* ─────────────────────────────────────────────
+       NAVIGATION
+    ───────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
     }
-    .project-card:nth-child(2n) { border-right: none; }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--ink-light);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-hire {
+      background: var(--ink) !important;
+      color: var(--cream) !important;
+      padding: 8px 20px;
+      border-radius: 24px;
+      font-size: 13px !important;
+      font-weight: 500;
+      transition: opacity 0.2s !important;
+    }
+    .nav-hire:hover { opacity: 0.78 !important; }
 
-    .card-img {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      transition: transform .7s cubic-bezier(.25,.46,.45,.94), filter .4s;
-      filter: brightness(.5) saturate(.75);
+    /* Mobile hamburger */
+    .nav-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      flex-direction: column;
+      gap: 5px;
     }
-    .project-card:hover .card-img { transform: scale(1.05); filter: brightness(.3) saturate(.5); }
+    .nav-menu-btn span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .nav-menu-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-menu-btn.open span:nth-child(2) { opacity: 0; }
+    .nav-menu-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-    .card-blob {
-      position: absolute; inset: 0;
-      pointer-events: none;
-    }
-    .blob {
-      position: absolute; border-radius: 50%; filter: blur(55px);
-      animation: blobMove 8s ease-in-out infinite;
-    }
-    .blob-1 { width: 200px; height: 200px; background: var(--red); opacity: .5; top: 5%; left: 5%; animation-delay: 0s; }
-    .blob-2 { width: 130px; height: 130px; background: #3d0000; opacity: .55; bottom: 10%; right: 8%; animation-delay: -3.5s; }
-    .blob-3 { width: 90px; height: 90px; background: #6b0000; opacity: .35; top: 45%; left: 38%; animation-delay: -6s; }
-    @keyframes blobMove {
-      0%,100% { transform: translate(0,0) scale(1); }
-      33% { transform: translate(16px,-12px) scale(1.1); }
-      66% { transform: translate(-10px,16px) scale(.92); }
-    }
-    .project-card:nth-child(2n) .blob-1 { background: #5a0008; animation-delay: -1.5s; }
-    .project-card:nth-child(3n) .blob-2 { background: var(--red); animation-delay: -4s; }
 
-    .card-num {
-      position: absolute; top: 16px; left: 18px;
-      font-size: 11px; font-weight: 400; letter-spacing: .14em;
-      color: rgba(255,255,255,.28); z-index: 3;
+    /* ─────────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────────── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 0.48fr;
+      gap: 3rem;
+      align-items: end;
+      padding: 5rem 0 4.5rem;
     }
-    .card-title-static {
-      position: absolute; bottom: 16px; left: 18px;
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 18px; letter-spacing: .02em;
-      color: rgba(255,255,255,.45); z-index: 2;
-      transition: opacity .3s;
+    .hero-eyebrow {
+      margin-bottom: 1.25rem;
     }
-    .project-card:hover .card-title-static { opacity: 0; }
-
-    .card-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.4) 55%, transparent 100%);
-      opacity: 0; transition: opacity .4s; z-index: 3;
+    .hero-name {
+      font-family: var(--font-serif);
+      font-size: clamp(54px, 8.5vw, 96px);
+      font-weight: 500;
+      line-height: 1.0;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
     }
-    .project-card:hover .card-overlay { opacity: 1; }
-
-    .card-info {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 24px 20px 22px; z-index: 4;
-      transform: translateY(10px); opacity: 0;
-      transition: transform .4s ease, opacity .35s ease;
+    .hero-tagline {
+      font-family: var(--font-serif);
+      font-size: clamp(18px, 2.4vw, 26px);
+      font-style: italic;
+      color: var(--ink-light);
+      font-weight: 400;
+      margin-bottom: 1.75rem;
     }
-    .project-card:hover .card-info { transform: translateY(0); opacity: 1; }
-    .card-cat {
-      font-size: 10px; font-weight: 500; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--red); margin-bottom: 5px;
+    .hero-bio {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--ink-light);
+      max-width: 460px;
+      margin-bottom: 2.25rem;
     }
-    .card-title {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 22px; letter-spacing: .01em; color: var(--white); line-height: 1.1;
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
-    .card-arrow {
-      position: absolute; bottom: 22px; right: 20px; z-index: 4;
-      width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.25);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      color: var(--white); font-size: 14px;
-      opacity: 0; transition: opacity .35s .1s, background .2s, border-color .2s;
-    }
-    .project-card:hover .card-arrow { opacity: 1; }
-    .card-arrow:hover { background: var(--red); border-color: var(--red); }
-
-    /* WORK LIST */
-    .work-list {}
-    .work-list-item {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 28px; border-bottom: var(--border);
-      cursor: none; position: relative; overflow: hidden;
-      transition: padding-left .3s;
-    }
-    .work-list-item::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-      width: 3px; background: var(--red);
-      transform: scaleY(0); transform-origin: bottom;
-      transition: transform .3s ease;
-    }
-    .work-list-item:hover::before { transform: scaleY(1); }
-    .work-list-item:hover { background: rgba(139,0,0,.06); padding-left: 36px; }
-
-    .wli-left {}
-    .wli-num {
-      font-size: 10px; font-weight: 400; letter-spacing: .14em;
-      color: var(--gray); margin-bottom: 3px;
-    }
-    .wli-title {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 17px; letter-spacing: .01em; color: var(--black);
-      transition: color .2s;
-    }
-    .work-list-item:hover .wli-title { color: var(--red); }
-    .wli-cat {
-      font-size: 10px; font-weight: 400; color: var(--gray);
-      letter-spacing: .1em; text-transform: uppercase; margin-top: 2px;
-    }
-    .wli-arrow {
-      font-size: 18px; color: var(--gray-light);
-      transition: color .2s, transform .25s;
-    }
-    .work-list-item:hover .wli-arrow { color: var(--red); transform: translateX(5px); }
-
-    /* ABOUT */
-    #about { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--border); }
-    .about-left {
-      padding: 80px 52px; border-right: var(--border);
-      display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .about-headline {
-      font-family: 'Fraunces', serif; font-weight: 900;
-      font-size: clamp(40px, 5vw, 72px);
-      line-height: .94; letter-spacing: -.01em;
-    }
-    .about-headline em {
-      font-family: 'Dancing Script', cursive;
-      font-style: normal; font-weight: 700;
-      color: var(--red); font-size: 1.25em;
+    .btn-primary {
       display: inline-block;
-      transform: translateY(8px);
-      line-height: 1;
+      background: var(--ink);
+      color: var(--cream);
+      padding: 13px 26px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+      transition: opacity 0.2s;
     }
-    .about-text {
-      font-size: 15px; line-height: 1.85; color: var(--black);
-      opacity: .7; max-width: 440px; margin-top: 36px; font-weight: 300;
-      text-wrap: balance;
+    .btn-primary:hover { opacity: 0.8; }
+    .btn-ghost {
+      display: inline-block;
+      background: transparent;
+      color: var(--ink);
+      padding: 12px 26px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      font-size: 14px;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .about-links { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 40px; }
+    .btn-ghost:hover {
+      border-color: var(--ink);
+      background: var(--cream-dark);
+    }
+
+    /* Hero image / featured project card */
+    .hero-image {
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      max-height: 440px;
+      background: var(--green);
+      position: relative;
+    }
+    /*
+      TO ADD YOUR OWN PHOTO or project image here:
+      Option A — add an <img> tag inside .hero-image
+      Option B — set background-image on .hero-image:
+        .hero-image { background-image: url('images/hero.jpg'); background-size: cover; background-position: center; }
+    */
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      background: linear-gradient(to top, rgba(6,38,30,0.75) 0%, transparent 55%);
+    }
+    .hero-image-badge {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 5px;
+    }
+    .hero-image-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      color: var(--white);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+    .hero-image-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 3px;
+    }
+
+
+    /* ─────────────────────────────────────────────
+       WORK GRID
+    ───────────────────────────────────────────── */
+    .section { padding: 4.5rem 0; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .section-all-link {
+      font-size: 14px;
+      color: var(--ink-light);
+      transition: color 0.2s;
+    }
+    .section-all-link:hover { color: var(--ink); }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .work-card {
+      display: block;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--cream-dark);
+      border: 1px solid var(--border);
+      transition: transform 0.28s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.28s;
+      cursor: pointer;
+    }
+    .work-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(26, 22, 18, 0.13);
+    }
+    .work-card-img {
+      height: 200px;
+      display: flex;
+      align-items: flex-end;
+      padding: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    /*
+      TO ADD PROJECT IMAGES:
+      Set background-image on each .work-card-img, or add an <img> inside.
+      Example: style="background-image: url('images/pretty-pickles.jpg'); background-size: cover;"
+    */
+    .work-card-tag {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 11px;
+      border-radius: 20px;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+    .work-card-body { padding: 1rem 1rem 1.25rem; }
+    .work-card-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+    .work-card-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+
+    /* ─────────────────────────────────────────────
+       FEATURED CASE STUDY — NOLA PARKS FOR ALL
+    ───────────────────────────────────────────── */
+    .feature-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+    }
+
+    /* Left side: simulated website preview */
+    .feature-preview {
+      background: #085041;
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .site-browser {
+      position: absolute;
+      top: 28px;
+      left: 28px;
+      right: 28px;
+      bottom: 0;
+      background: #0F6E56;
+      border-radius: 10px 10px 0 0;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+    .site-browser-bar {
+      background: #064032;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 6px;
+    }
+    .site-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.18); }
+    .site-url-bar {
+      flex: 1;
+      height: 14px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 4px;
+      margin: 0 8px;
+    }
+    .site-body { overflow: hidden; }
+    .site-nav {
+      background: rgba(8,64,50,0.9);
+      height: 44px;
+      display: flex;
+      align-items: center;
+      padding: 0 18px;
+      justify-content: space-between;
+    }
+    .site-nav-logo { width: 88px; height: 14px; background: rgba(255,255,255,0.65); border-radius: 2px; }
+    .site-nav-links { display: flex; gap: 10px; }
+    .site-nav-link { width: 30px; height: 8px; background: rgba(255,255,255,0.25); border-radius: 2px; }
+    .site-nav-cta { width: 64px; height: 22px; border-radius: 11px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); }
+    .site-hero {
+      padding: 22px 20px 14px;
+    }
+    .site-hero-h {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .site-hero-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      max-width: 280px;
+    }
+    .site-cta-btn {
+      display: inline-block;
+      background: var(--white);
+      color: #0F6E56;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 4px;
+      letter-spacing: 0.07em;
+    }
+    .site-img-placeholder {
+      margin-top: 14px;
+      height: 70px;
+      background: rgba(29, 158, 117, 0.45);
+    }
+
+    /* Right side: text content */
+    .feature-body {
+      padding: 2.75rem 2.5rem;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .feature-chips {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .chip {
+      font-size: 11px;
+      padding: 4px 13px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+    }
+    .chip-green { background: var(--green-light); color: var(--green); }
+    .chip-outline { border: 1px solid var(--border); color: var(--ink-light); }
+
+    .feature-title {
+      font-family: var(--font-serif);
+      font-size: 38px;
+      font-weight: 500;
+      line-height: 1.15;
+      margin-bottom: 1.1rem;
+    }
+    .feature-desc {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--ink-light);
+      margin-bottom: 1.75rem;
+    }
+    .feature-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-label {
+      font-size: 10px;
+      color: var(--ink-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .stat-value { font-size: 14px; font-weight: 500; }
+
+    .feature-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--green);
+      transition: gap 0.2s;
+    }
+    .feature-link:hover { gap: 12px; }
+
+
+    /* ─────────────────────────────────────────────
+       ABOUT SECTION
+    ───────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 3.2vw, 38px);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--ink);
+      padding-left: 1.75rem;
+      border-left: 2px solid var(--green);
+    }
+    .about-body {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--ink-light);
+      margin-bottom: 1.4rem;
+    }
+    .about-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 1.75rem;
+    }
     .about-link {
-      font-size: 12px; font-weight: 500; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--black); text-decoration: none;
-      border-bottom: 1px solid rgba(13,13,13,.3); padding-bottom: 3px;
-      transition: color .2s, border-color .2s;
+      font-size: 14px;
+      color: var(--ink-light);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
     }
-    .about-link:hover { color: var(--red); border-color: var(--red); }
-
-    /* ABOUT RIGHT — cream instead of black */
-    .about-right {
-      padding: 80px 52px; background: var(--cream-dark);
-      display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .credentials-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-      background: rgba(13,13,13,.1);
-      border: 1px solid rgba(13,13,13,.1);
-    }
-    .cred-box {
-      background: var(--cream-dark); padding: 36px 28px;
-      border: 1px solid rgba(13,13,13,.06);
-    }
-    .cred-num {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: 52px; color: var(--red); line-height: 1;
-    }
-    .cred-lbl {
-      font-size: 12px; font-weight: 400; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--gray); margin-top: 8px;
-      line-height: 1.5;
+    .about-link:hover {
+      color: var(--ink);
+      border-color: var(--ink);
     }
 
-    .skills-wrap { margin-top: 44px; }
-    .skills-lbl {
-      font-size: 11px; font-weight: 500; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--gray); margin-bottom: 16px;
-    }
-    .skill-pill {
-      display: inline-block;
-      font-size: 11px; font-weight: 500; letter-spacing: .09em;
-      text-transform: uppercase; color: var(--black);
-      border: 1px solid rgba(13,13,13,.2);
-      padding: 8px 16px; margin: 4px 3px;
-      transition: background .2s, border-color .2s, color .2s;
-    }
-    .skill-pill:hover { background: var(--red); border-color: var(--red); color: var(--white); }
 
-    /* CONTACT */
-    #contact { display: grid; grid-template-columns: 1fr 1fr; }
-    .contact-left {
-      padding: 80px 52px; background: linear-gradient(135deg, #8B0000 0%, #6B0000 100%);
-      display: flex; flex-direction: column; justify-content: space-between;
+    /* ─────────────────────────────────────────────
+       SERVICES
+    ───────────────────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
     }
-    .contact-hl {
-      font-family: 'Fraunces', serif; font-weight: 900;
-      font-size: clamp(44px, 5vw, 72px);
-      line-height: .95; color: var(--white);
-      max-width: 520px;
+    .service-card {
+      padding: 1.6rem;
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+    .service-card:hover { border-color: var(--ink-muted); }
+    .service-icon {
+      font-size: 22px;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .service-name {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .service-desc {
+      font-size: 13px;
+      color: var(--ink-light);
+      line-height: 1.65;
+    }
+
+
+    /* ─────────────────────────────────────────────
+       CONTACT / CTA
+    ───────────────────────────────────────────── */
+    .contact-section {
+      background: var(--ink);
+      color: var(--cream);
+      text-align: center;
+      padding: 7rem 2rem;
+    }
+    .contact-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
     }
     .contact-sub {
-      font-size: 15px; line-height: 1.8; color: rgba(255,255,255,.8);
-      max-width: 340px; font-weight: 300;
-      text-wrap: balance;
+      font-size: 15px;
+      color: rgba(245, 240, 232, 0.55);
+      margin-bottom: 2.75rem;
     }
+    .contact-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .contact-email {
+      font-size: 16px;
+      font-weight: 500;
+      color: #72D5B4;
+    }
+    .contact-email:hover { text-decoration: underline; }
+    .contact-divider {
+      width: 1px;
+      height: 18px;
+      background: rgba(245, 240, 232, 0.18);
+    }
+    .contact-social {
+      font-size: 14px;
+      color: rgba(245, 240, 232, 0.55);
+      transition: color 0.2s;
+    }
+    .contact-social:hover { color: var(--cream); }
 
-    /* CONTACT RIGHT — cream instead of black */
-    .contact-right {
-      padding: 80px 52px; background: var(--cream-dark);
-      display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .contact-field-lbl {
-      font-size: 11px; font-weight: 500; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--gray); margin-bottom: 8px;
-    }
-    .contact-field-val {
-      font-size: 15px; color: var(--black); margin-bottom: 32px; font-weight: 300;
-    }
-    .contact-field-val a {
-      color: inherit; text-decoration: none;
-      border-bottom: 1px solid rgba(13,13,13,.25);
-      transition: border-color .2s, color .2s;
-    }
-    .contact-field-val a:hover { color: var(--red); border-color: var(--red); }
 
-    /* FOOTER */
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
     footer {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 20px 52px; border-top: var(--border);
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 1.5rem 0;
     }
-    .footer-name {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: 18px; letter-spacing: -.01em; color: var(--black);
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .footer-copy { font-size: 12px; color: var(--gray); }
-    .footer-top {
-      font-size: 11px; font-weight: 500; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--black); text-decoration: none;
-      transition: color .2s;
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(245, 240, 232, 0.28);
     }
-    .footer-top:hover { color: var(--red); }
+    .footer-links {
+      display: flex;
+      gap: 18px;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: rgba(245, 240, 232, 0.28);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(245, 240, 232, 0.65); }
 
-    /* OVERLAY */
-    .overlay {
-      position: fixed; inset: 0; z-index: 800;
-      background: #F4EDE0;
-      opacity: 0; pointer-events: none;
-      transition: opacity .4s ease;
-      overflow-y: auto;
+
+    /* ─────────────────────────────────────────────
+       SCROLL FADE-IN ANIMATIONS
+    ───────────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
-    .overlay.open { opacity: 1; pointer-events: all; }
-    .overlay-header {
-      position: sticky; top: 0; z-index: 2;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 24px 52px; border-bottom: var(--border);
-      background: var(--cream);
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
     }
-    .overlay-header-label {
-      font-size: 11px; font-weight: 500; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--gray);
-    }
-    .overlay-close {
-      font-size: 13px; font-weight: 500; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--black); cursor: none;
-      background: none; border: none; transition: color .2s;
-    }
-    .overlay-close:hover { color: var(--red); }
-    .overlay-inner { padding: 64px 52px 120px; max-width: 1000px; margin: 0 auto; }
-    .overlay-cat {
-      font-size: 11px; font-weight: 500; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--red); margin-bottom: 16px;
-    }
-    .overlay-title {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(52px, 7vw, 100px);
-      line-height: .88; color: var(--black); margin-bottom: 52px;
-    }
-    .overlay-meta {
-      display: flex; gap: 52px; margin-bottom: 52px;
-      padding-bottom: 40px; border-bottom: var(--border);
-    }
-    .meta-lbl {
-      font-size: 10px; font-weight: 500; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--gray); margin-bottom: 6px;
-    }
-    .meta-val { font-size: 15px; color: var(--black); font-weight: 300; }
-    .overlay-img {
-      width: 100%; aspect-ratio: 16/9;
-      background: #1A0A08; border: var(--border);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 52px; position: relative; overflow: hidden;
-    }
-    .overlay-img .blob { opacity: .2; }
-    .overlay-img-hint {
-      font-size: 12px; font-weight: 400; letter-spacing: .16em;
-      text-transform: uppercase; color: rgba(255,255,255,.3);
-      position: relative; z-index: 2; text-align: center; padding: 20px;
-    }
-    .overlay-body {
-      font-size: 17px; line-height: 1.9; color: var(--black);
-      opacity: .7; max-width: 680px; font-weight: 300;
+    .fade-in:nth-child(2) { transition-delay: 0.08s; }
+    .fade-in:nth-child(3) { transition-delay: 0.16s; }
+    .fade-in:nth-child(4) { transition-delay: 0.24s; }
+    .fade-in:nth-child(5) { transition-delay: 0.08s; }
+    .fade-in:nth-child(6) { transition-delay: 0.16s; }
+
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE — TABLET (≤ 900px)
+    ───────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 3.5rem 0 3rem; }
+      .hero-image { max-height: 300px; aspect-ratio: 16/9; order: -1; }
+      .work-grid { grid-template-columns: 1fr 1fr; }
+      .feature-card { grid-template-columns: 1fr; }
+      .feature-preview { min-height: 260px; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
     }
 
-    /* REVEAL */
-    .reveal {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity .65s ease, transform .65s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* ─────────────────────────────────────────────
+       RESPONSIVE — MOBILE (≤ 640px)
+    ───────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .container { padding: 0 1.25rem; }
+      .work-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .section { padding: 3rem 0; }
+      .contact-section { padding: 4.5rem 1.25rem; }
 
-    /* RESPONSIVE */
-    @media (max-width: 960px) {
-      nav, nav.scrolled { padding: 20px 28px; }
-      .hero { padding: 0 28px 52px; }
-      .hero-vertical-label, .hero-watermark { display: none; }
-      .work-layout { grid-template-columns: 1fr; }
-      .work-featured { border-right: none; }
-      .work-featured-grid { grid-template-columns: 1fr; }
-      .project-card { aspect-ratio: 3/2; border-right: none !important; }
-      #about, #contact { grid-template-columns: 1fr; }
-      .about-right, .contact-right { border-top: var(--border); }
-      .section-bar, .about-left, .about-right, .contact-left, .contact-right { padding: 52px 28px; }
-      footer { padding: 16px 28px; }
-      .overlay-header, .overlay-inner { padding-left: 28px; padding-right: 28px; }
-      .overlay-meta { flex-wrap: wrap; gap: 28px; }
+      /* Mobile nav */
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 65px;
+        left: 0; right: 0;
+        background: var(--cream);
+        border-bottom: 1px solid var(--border);
+        padding: 1.25rem 1.5rem 1.75rem;
+        gap: 1.1rem;
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-hire { display: none !important; }
+      .nav-menu-btn { display: flex; }
+      nav { position: relative; }
     }
   </style>
 </head>
 <body>
-<!-- Ink texture filter for hero name -->
-<svg style="display:none" aria-hidden="true">
-  <defs>
-    <filter id="ink-texture" x="-2%" y="-5%" width="104%" height="115%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.035 0.065" numOctaves="4" seed="5" stitchTiles="stitch" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
-      <feComposite in="displaced" in2="SourceGraphic" operator="in"/>
-    </filter>
-  </defs>
-</svg>
 
-<div id="cursor"></div>
+  <!-- ════════════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════════════ -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">Mae Montero</a>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#" class="nav-logo"><span class="mm-m1">M</span><span class="mm-m2">M</span></a>
-  <ul class="nav-links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="https://acrobat.adobe.com/id/urn:aaid:sc:us:58506357-0122-45c7-ac4e-053a95baa76c" target="_blank">Résumé ↗</a></li>
-  </ul>
-</nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a href="mailto:maemonterodesigns@gmail.com" class="nav-hire">Hire me</a>
+          </li>
+        </ul>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-watermark" aria-hidden="true">MM</div>
-  <span class="hero-vertical-label">Graphic & Brand Designer — New Orleans, LA</span>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Graphic & Brand Designer — New Orleans, LA</p>
-    <h1 class="hero-name">
-      <span class="line"><span class="line-inner">Mae</span></span>
-      <span class="line"><span class="line-inner accent">Montero</span></span>
-    </h1>
-    <div class="hero-rule"></div>
-    <div class="hero-bottom">
-      <p class="hero-bio">I design brand identities, editorial systems, and visual experiences that communicate with precision and feel. Based in New Orleans — available for full-time roles and select collaborations.</p>
-      <div class="hero-cta-group">
-        <a href="#work" class="btn-primary">View Work →</a>
-        <span class="hero-scroll-hint">Scroll to explore</span>
+        <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
-  </div>
-</section>
+  </nav>
 
-</div>
 
-<!-- WORK -->
-<section id="work">
-  <div class="section-bar">
-    <span class="section-label">Selected Work</span>
-    <span class="section-count">27 Projects</span>
-  </div>
-  <div class="work-layout">
-    <div class="work-featured">
-      <div class="work-featured-grid">
+  <!-- ════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════ -->
+  <section>
+    <div class="container">
+      <div class="hero">
 
-        <div class="project-card reveal" data-id="99">
-          <div class="card-img" style="background-image:url('images/parks-for-all.jpg')"></div>
-          <div class="card-blob"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
-          <span class="card-num">01</span>
-          <span class="card-title-static">Parks for All</span>
-          <div class="card-overlay"></div>
-          <div class="card-info">
-            <p class="card-cat">Web Design · Squarespace</p>
-            <p class="card-title">Parks for All</p>
+        <div>
+          <p class="section-label hero-eyebrow">Graphic Designer · New Orleans, LA</p>
+          <h1 class="hero-name">Mae<br>Montero</h1>
+          <p class="hero-tagline">Brand identity, print &amp; web design</p>
+          <p class="hero-bio">
+            I design with restraint and intention — where structure becomes softness,
+            where type turns into tone. Work that's honest, atmospheric, and made to
+            be felt as much as seen.
+          </p>
+          <div class="hero-actions">
+            <a href="#work" class="btn-primary">View selected work</a>
+            <a href="#contact" class="btn-ghost">Get in touch</a>
           </div>
-          <div class="card-arrow">→</div>
         </div>
 
-        <div class="project-card reveal" data-id="0">
-          <div class="card-img" style="background-image:url('images/real-estate.jpg')"></div>
-          <div class="card-blob"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
-          <span class="card-num">02</span>
-          <span class="card-title-static">Real Estate</span>
-          <div class="card-overlay"></div>
-          <div class="card-info">
-            <p class="card-cat">Brand Identity</p>
-            <p class="card-title">Real Estate</p>
+        <!--
+          HERO IMAGE — swap for your own:
+          Option A: add your photo as <img src="images/mae.jpg" alt="Mae Montero">
+          Option B: change the background-color to background-image below
+        -->
+        <div class="hero-image">
+          <div class="hero-image-overlay">
+            <p class="hero-image-badge">Featured project · 2026</p>
+            <p class="hero-image-title">Nola Parks for All</p>
+            <p class="hero-image-sub">Nonprofit web design &amp; brand</p>
           </div>
-          <div class="card-arrow">→</div>
         </div>
-
-        <div class="project-card reveal" data-id="1">
-          <div class="card-img" style="background-image:url('images/repent-apparel.jpg')"></div>
-          <div class="card-blob"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
-          <span class="card-num">03</span>
-          <span class="card-title-static">Repent Apparel</span>
-          <div class="card-overlay"></div>
-          <div class="card-info">
-            <p class="card-cat">Apparel Design</p>
-            <p class="card-title">Repent Apparel</p>
-          </div>
-          <div class="card-arrow">→</div>
-        </div>
-
-        <div class="project-card reveal" data-id="2">
-          <div class="card-img" style="background-image:url('images/poetry-collection.jpg')"></div>
-          <div class="card-blob"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
-          <span class="card-num">04</span>
-          <span class="card-title-static">Poetry Collection</span>
-          <div class="card-overlay"></div>
-          <div class="card-info">
-            <p class="card-cat">Book Design</p>
-            <p class="card-title">Poetry Collection</p>
-          </div>
-          <div class="card-arrow">→</div>
-        </div>
-
-        <div class="project-card reveal" data-id="3">
-          <div class="card-img" style="background-image:url('images/pretty-pickles.jpg')"></div>
-          <div class="card-blob"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
-          <span class="card-num">05</span>
-          <span class="card-title-static">Pretty Pickles</span>
-          <div class="card-overlay"></div>
-          <div class="card-info">
-            <p class="card-cat">Packaging Design</p>
-            <p class="card-title">Pretty Pickles</p>
-          </div>
-          <div class="card-arrow">→</div>
-        </div>
-
-        <div class="project-card reveal" data-id="4">
-          <div class="card-img" style="background-image:url('images/solange.jpg')"></div>
-          <div class="card-blob"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
-          <span class="card-num">06</span>
-          <span class="card-title-static">Solange</span>
-          <div class="card-overlay"></div>
-          <div class="card-info">
-            <p class="card-cat">Editorial Design</p>
-            <p class="card-title">Solange: Movement & Memory</p>
-          </div>
-          <div class="card-arrow">→</div>
-        </div>
-
 
       </div>
     </div>
+  </section>
 
-    <!-- SIDE LIST -->
-    <div class="work-list">
-      <div class="work-list-item reveal" data-id="5"><div class="wli-left"><div class="wli-num">07</div><div class="wli-title">Butcher's Crossing</div><div class="wli-cat">Book Cover Design</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="6"><div class="wli-left"><div class="wli-num">08</div><div class="wli-title">Call for Submission</div><div class="wli-cat">Print / Poster</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="7"><div class="wli-left"><div class="wli-num">09</div><div class="wli-title">Budapest</div><div class="wli-cat">Photography / Layout</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="8"><div class="wli-left"><div class="wli-num">10</div><div class="wli-title">Clements Insurance Ad</div><div class="wli-cat">Advertising</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="9"><div class="wli-left"><div class="wli-num">11</div><div class="wli-title">Meow Mix</div><div class="wli-cat">Brand / Packaging</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="10"><div class="wli-left"><div class="wli-num">12</div><div class="wli-title">Joosy Summer</div><div class="wli-cat">Brand Campaign</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="11"><div class="wli-left"><div class="wli-num">13</div><div class="wli-title">Tempo of Type</div><div class="wli-cat">Typography</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="12"><div class="wli-left"><div class="wli-num">14</div><div class="wli-title">Outlier Studios</div><div class="wli-cat">Brand Identity</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="13"><div class="wli-left"><div class="wli-num">15</div><div class="wli-title">Rise N' Shine</div><div class="wli-cat">Brand / Packaging</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="14"><div class="wli-left"><div class="wli-num">16</div><div class="wli-title">Sonic Youth</div><div class="wli-cat">Poster Design</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="15"><div class="wli-left"><div class="wli-num">17</div><div class="wli-title">Book Sale</div><div class="wli-cat">Print / Poster</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="16"><div class="wli-left"><div class="wli-num">18</div><div class="wli-title">Wedding Invitation</div><div class="wli-cat">Print / Stationery</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="17"><div class="wli-left"><div class="wli-num">19</div><div class="wli-title">Hurricane Milton</div><div class="wli-cat">Motion / News</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="18"><div class="wli-left"><div class="wli-num">20</div><div class="wli-title">Spring Swing</div><div class="wli-cat">Event Design</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="19"><div class="wli-left"><div class="wli-num">21</div><div class="wli-title">Tripsitter</div><div class="wli-cat">Brand / Digital</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="20"><div class="wli-left"><div class="wli-num">22</div><div class="wli-title">Loyola Postcard</div><div class="wli-cat">Print</div></div><span class="wli-arrow">→</span></div>
-      <div class="work-list-item reveal" data-id="21"><div class="wli-left"><div class="wli-num">23</div><div class="wli-title">Cookies for Everyone</div><div class="wli-cat">Brand / Packaging</div></div><span class="wli-arrow">→</span></div>
-    </div>
-  </div>
-</section>
+  <hr>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-left" style="position:relative; overflow:hidden;">
-    <div class="section-watermark" aria-hidden="true">ABOUT</div>
-    <div>
-      <div class="section-label" style="margin-bottom:32px;">About</div>
-      <h2 class="about-headline">Design<br>as a <em>felt</em><br>language.</h2>
-      <p class="about-text">I'm Mae Montero — a graphic and brand designer with a foundation in visual communication and a deep interest in how design creates meaning. My work spans brand identity, editorial systems, packaging, web design, and motion, always built around clarity, intention, and atmosphere.<br><br>I bring a considered eye to every project — one that's shaped by a love of typography, the logic of layout, and the belief that the best design is felt before it's understood.</p>
-    </div>
-    <div class="about-links">
-      <a href="http://www.linkedin.com/in/maegan-montero-b4ba0522b" class="about-link" target="_blank">LinkedIn ↗</a>
-      <a href="https://www.instagram.com/maemonterodesigns/" class="about-link" target="_blank">Instagram ↗</a>
-      <a href="https://acrobat.adobe.com/id/urn:aaid:sc:us:58506357-0122-45c7-ac4e-053a95baa76c" class="about-link" target="_blank">Résumé ↗</a>
-    </div>
-  </div>
-  <div class="about-right">
-    <div class="credentials-grid">
-      <div class="cred-box">
-        <div class="cred-num">BA</div>
-        <div class="cred-lbl">Graphic Design<br>Loyola University<br>New Orleans</div>
+
+  <!-- ════════════════════════════════════════════
+       SELECTED WORK
+  ════════════════════════════════════════════ -->
+  <section class="section" id="work">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="section-label">Selected work</span>
+        <a href="https://maemontero.myportfolio.com/work" target="_blank" rel="noopener" class="section-all-link">
+          View all 26 projects →
+        </a>
       </div>
-      <div class="cred-box">
-        <div class="cred-num">4+</div>
-        <div class="cred-lbl">Years designing<br>across brand, print<br>& motion</div>
+
+      <div class="work-grid">
+
+        <!--
+          PROJECT CARDS
+          To swap in real images, set a background-image on .work-card-img:
+          style="background-color: #0F6E56; background-image: url('images/nola-parks.jpg'); background-size: cover; background-position: center;"
+        -->
+
+        <a href="https://nolaparksforall.org" target="_blank" rel="noopener" class="work-card fade-in">
+          <div class="work-card-img" style="background-color: #0F6E56;">
+            <span class="work-card-tag" style="background: rgba(255,255,255,0.18); color: white;">Web design</span>
+          </div>
+          <div class="work-card-body">
+            <p class="work-card-title">Nola Parks for All</p>
+            <p class="work-card-sub">Nonprofit · Web &amp; brand</p>
+          </div>
+        </a>
+
+        <a href="https://maemontero.myportfolio.com/pretty-pickles" target="_blank" rel="noopener" class="work-card fade-in">
+          <div class="work-card-img" style="background-color: #C4A882;">
+            <span class="work-card-tag" style="background: rgba(255,255,255,0.38); color: #4A2F0C;">Brand identity</span>
+          </div>
+          <div class="work-card-body">
+            <p class="work-card-title">Pretty Pickles</p>
+            <p class="work-card-sub">Packaging &amp; branding</p>
+          </div>
+        </a>
+
+        <a href="https://maemontero.myportfolio.com/t-shirt-design" target="_blank" rel="noopener" class="work-card fade-in">
+          <div class="work-card-img" style="background-color: #1C1712;">
+            <span class="work-card-tag" style="background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.78);">Apparel</span>
+          </div>
+          <div class="work-card-body">
+            <p class="work-card-title">Repent Apparel</p>
+            <p class="work-card-sub">T-shirt &amp; apparel design</p>
+          </div>
+        </a>
+
+        <a href="https://maemontero.myportfolio.com/solange-movement-and-memory" target="_blank" rel="noopener" class="work-card fade-in">
+          <div class="work-card-img" style="background-color: #3C3489;">
+            <span class="work-card-tag" style="background: rgba(255,255,255,0.14); color: white;">Editorial</span>
+          </div>
+          <div class="work-card-body">
+            <p class="work-card-title">Solange: Movement &amp; Memory</p>
+            <p class="work-card-sub">Editorial design</p>
+          </div>
+        </a>
+
+        <a href="https://maemontero.myportfolio.com/butchers-crossing" target="_blank" rel="noopener" class="work-card fade-in">
+          <div class="work-card-img" style="background-color: #993C1D;">
+            <span class="work-card-tag" style="background: rgba(255,255,255,0.14); color: white;">Print</span>
+          </div>
+          <div class="work-card-body">
+            <p class="work-card-title">Butcher's Crossing</p>
+            <p class="work-card-sub">Book cover design</p>
+          </div>
+        </a>
+
+        <a href="https://maemontero.myportfolio.com/tempo-of-type" target="_blank" rel="noopener" class="work-card fade-in">
+          <div class="work-card-img" style="background-color: #BA7517;">
+            <span class="work-card-tag" style="background: rgba(255,255,255,0.14); color: white;">Typography</span>
+          </div>
+          <div class="work-card-body">
+            <p class="work-card-title">Tempo of Type</p>
+            <p class="work-card-sub">Typographic exploration</p>
+          </div>
+        </a>
+
       </div>
-      <div class="cred-box">
-        <div class="cred-num">NOLA</div>
-        <div class="cred-lbl">Based in<br>New Orleans,<br>open to anywhere</div>
+    </div>
+  </section>
+
+  <hr>
+
+
+  <!-- ════════════════════════════════════════════
+       FEATURED CASE STUDY — NOLA PARKS FOR ALL
+  ════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="section-label">Featured case study</span>
       </div>
-      <div class="cred-box">
-        <div class="cred-num">↗</div>
-        <div class="cred-lbl">Available for<br>full-time roles &<br>freelance work</div>
+
+      <div class="feature-card fade-in">
+
+        <!-- Simulated site preview (left panel) -->
+        <div class="feature-preview">
+          <div class="site-browser">
+            <div class="site-browser-bar">
+              <div class="site-dot"></div>
+              <div class="site-dot"></div>
+              <div class="site-dot"></div>
+              <div class="site-url-bar"></div>
+            </div>
+            <div class="site-body">
+              <div class="site-nav">
+                <div class="site-nav-logo"></div>
+                <div class="site-nav-links">
+                  <div class="site-nav-link"></div>
+                  <div class="site-nav-link"></div>
+                  <div class="site-nav-link"></div>
+                  <div class="site-nav-link"></div>
+                </div>
+                <div class="site-nav-cta"></div>
+              </div>
+              <div class="site-hero">
+                <p class="site-hero-h">Empowering Communities<br>Through Action</p>
+                <p class="site-hero-sub">Parks For All New Orleans is a 501(c)3 organization advocating for equitable, well-funded public parks and green spaces across the city.</p>
+                <span class="site-cta-btn">LEARN MORE</span>
+              </div>
+              <div class="site-img-placeholder"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text content (right panel) -->
+        <div class="feature-body">
+          <div class="feature-chips">
+            <span class="chip chip-green">Web design</span>
+            <span class="chip chip-outline">Nonprofit</span>
+            <span class="chip chip-outline">Squarespace</span>
+            <span class="chip chip-outline">2026</span>
+          </div>
+
+          <h2 class="feature-title">Nola Parks<br>for All</h2>
+
+          <p class="feature-desc">
+            Designed and built the full website for New Orleans' leading parks advocacy
+            nonprofit — a 501(c)(3) working to secure equitable access to green spaces
+            across the city. The project included site architecture, visual identity
+            adaptation, and content strategy for a community-facing brand with real
+            civic impact.
+          </p>
+
+          <div class="feature-stats">
+            <div>
+              <p class="stat-label">Role</p>
+              <p class="stat-value">Web Designer</p>
+            </div>
+            <div>
+              <p class="stat-label">Year</p>
+              <p class="stat-value">2026</p>
+            </div>
+            <div>
+              <p class="stat-label">Platform</p>
+              <p class="stat-value">Squarespace</p>
+            </div>
+            <div>
+              <p class="stat-label">Client</p>
+              <p class="stat-value">Nonprofit org</p>
+            </div>
+          </div>
+
+          <a href="https://nolaparksforall.org" target="_blank" rel="noopener" class="feature-link">
+            View live site →
+          </a>
+        </div>
+
       </div>
     </div>
-    <div class="skills-wrap">
-      <div class="skills-lbl">Tools & Expertise</div>
-      <span class="skill-pill">Adobe InDesign</span>
-      <span class="skill-pill">Illustrator</span>
-      <span class="skill-pill">Photoshop</span>
-      <span class="skill-pill">After Effects</span>
-      <span class="skill-pill">Figma</span>
-      <span class="skill-pill">Squarespace</span>
-      <span class="skill-pill">Brand Identity</span>
-      <span class="skill-pill">Typography</span>
-      <span class="skill-pill">Print Design</span>
-      <span class="skill-pill">Web Design</span>
-      <span class="skill-pill">Motion Graphics</span>
-      <span class="skill-pill">Packaging</span>
-      <span class="skill-pill">Editorial Layout</span>
+  </section>
+
+  <hr>
+
+
+  <!-- ════════════════════════════════════════════
+       ABOUT
+  ════════════════════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid fade-in">
+
+        <blockquote class="about-quote">
+          "I see design as an emotional and spatial tool, not just a visual one."
+        </blockquote>
+
+        <div>
+          <p class="section-label" style="margin-bottom: 1rem;">About Mae</p>
+          <p class="about-body">
+            I'm a graphic designer drawn to quiet details, intentional choices, and the
+            spaces where clarity meets curiosity. My work often begins with a feeling —
+            an idea that unfolds through research, intuition, and form.
+          </p>
+          <p class="about-body">
+            I gravitate toward projects that involve storytelling, systems, and the
+            subtleties of visual communication — inspired by the pace of print, the
+            silence of structure, and the poetry of everyday things.
+          </p>
+          <div class="about-links">
+            <a href="https://acrobat.adobe.com/id/urn:aaid:sc:us:58506357-0122-45c7-ac4e-053a95baa76c"
+               target="_blank" rel="noopener" class="about-link">Resume ↗</a>
+            <a href="http://www.linkedin.com/in/maegan-montero-b4ba0522b"
+               target="_blank" rel="noopener" class="about-link">LinkedIn ↗</a>
+            <a href="https://www.instagram.com/maemonterodesigns/"
+               target="_blank" rel="noopener" class="about-link">Instagram ↗</a>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-left" style="position:relative; overflow:hidden;">
-    <div class="section-watermark" aria-hidden="true" style="-webkit-text-stroke-color: rgba(255,255,255,0.07);">CONTACT</div>
-    <div class="section-label" style="color:rgba(255,255,255,.5); margin-bottom:32px;">Contact</div>
-    <h2 class="contact-hl">Let's build<br>something<br>lasting.</h2>
-    <p class="contact-sub">I'm actively seeking full-time design opportunities where I can do meaningful brand work. If you're building something worth designing — I want in.</p>
-  </div>
-  <div class="contact-right">
-    <div class="section-label" style="margin-bottom:32px;">Get In Touch</div>
-    <div>
-      <div class="contact-field-lbl">Email</div>
-      <div class="contact-field-val"><a href="mailto:maemonterodesigns@gmail.com">maemonterodesigns@gmail.com</a></div>
-      <div class="contact-field-lbl">Instagram</div>
-      <div class="contact-field-val"><a href="https://www.instagram.com/maemonterodesigns/" target="_blank">@maemonterodesigns</a></div>
-      <div class="contact-field-lbl">LinkedIn</div>
-      <div class="contact-field-val"><a href="http://www.linkedin.com/in/maegan-montero-b4ba0522b" target="_blank">Maegan Montero</a></div>
+  <hr>
+
+
+  <!-- ════════════════════════════════════════════
+       SERVICES
+  ════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="section-label">What I do</span>
+      </div>
+
+      <div class="services-grid fade-in">
+
+        <div class="service-card">
+          <span class="service-icon">✦</span>
+          <p class="service-name">Brand identity</p>
+          <p class="service-desc">Logos, visual systems, and brand language built to hold up across every touchpoint.</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-icon">◻</span>
+          <p class="service-name">Web design</p>
+          <p class="service-desc">Squarespace, Adobe Portfolio, and custom HTML sites designed to convert and impress.</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-icon">▤</span>
+          <p class="service-name">Print &amp; editorial</p>
+          <p class="service-desc">Books, posters, invitations, packaging — the physicality of design done well.</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-icon">◎</span>
+          <p class="service-name">Photography</p>
+          <p class="service-desc">Portraits, editorial, and brand shoots with a quiet, intentional eye.</p>
+        </div>
+
+      </div>
     </div>
-    <a href="mailto:maemonterodesigns@gmail.com" class="btn-primary" style="margin-top:40px;">Send a Message →</a>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <span class="footer-name">Mae Montero</span>
-  <span class="footer-copy">© 2025 — Graphic & Brand Designer, New Orleans</span>
-  <a href="#" class="footer-top">↑ Top</a>
-</footer>
 
-<!-- OVERLAY -->
-<div class="overlay" id="overlay">
-  <div class="overlay-header">
-    <span class="overlay-header-label">Case Study</span>
-    <button class="overlay-close" id="overlayClose">✕ Close</button>
-  </div>
-  <div class="overlay-inner">
-    <p class="overlay-cat" id="ocat"></p>
-    <h2 class="overlay-title" id="otitle"></h2>
-    <div class="overlay-meta" id="ometa"></div>
-    <div class="overlay-img">
-      <div class="blob blob-1" style="opacity:.15"></div>
-      <div class="blob blob-2" style="opacity:.15"></div>
-      <p class="overlay-img-hint">Replace with your project image:<br>add images/[project-name].jpg to your GitHub folder</p>
+  <!-- ════════════════════════════════════════════
+       CONTACT
+  ════════════════════════════════════════════ -->
+  <section class="contact-section" id="contact">
+    <h2 class="contact-heading">Let's work together</h2>
+    <p class="contact-sub">Open to freelance, contract, and full-time opportunities.</p>
+    <div class="contact-links">
+      <a href="mailto:maemonterodesigns@gmail.com" class="contact-email">
+        maemonterodesigns@gmail.com
+      </a>
+      <div class="contact-divider"></div>
+      <a href="http://www.linkedin.com/in/maegan-montero-b4ba0522b"
+         target="_blank" rel="noopener" class="contact-social">LinkedIn</a>
+      <a href="https://www.instagram.com/maemonterodesigns/"
+         target="_blank" rel="noopener" class="contact-social">Instagram</a>
+      <a href="https://acrobat.adobe.com/id/urn:aaid:sc:us:58506357-0122-45c7-ac4e-053a95baa76c"
+         target="_blank" rel="noopener" class="contact-social">Resume</a>
     </div>
-    <div class="overlay-body" id="obody"></div>
-  </div>
-</div>
+  </section>
 
-<script>
-const projects = [
-  { title:"Parks for All", cat:"Web Design · Squarespace", year:"2025", role:"Web Designer", tools:"Squarespace, Figma, Photoshop", body:"A full website design and build for Parks for All, an organization dedicated to making green spaces accessible and equitable for every community. The project encompassed information architecture, visual design, and Squarespace development — creating a site that feels as open and welcoming as the parks it champions." },
-  { title:"Real Estate", cat:"Brand Identity", year:"2024", role:"Graphic Designer", tools:"Adobe Illustrator, InDesign", body:"A comprehensive brand identity system developed for a real estate client, built around ideas of trust, aspiration, and belonging. The project included logo development, a refined color palette, and a full suite of print collateral — all designed to communicate stability and aspiration in equal measure." },
-  { title:"Repent Apparel", cat:"Apparel Design", year:"2024", role:"Graphic Designer", tools:"Illustrator, Photoshop", body:"Graphic design and brand development for an independent apparel label. The work centered on creating wearable pieces with strong cultural resonance — bold in composition, deliberate in reference, and built for longevity beyond a single season." },
-  { title:"Poetry Collection", cat:"Book Design", year:"2024", role:"Graphic Designer", tools:"Adobe InDesign, Illustrator", body:"A typographic book design project for a curated poetry collection. The layout system was constructed to honor the rhythm and breath of verse — generous white space, considered type pairing, and a structure that lets silence do its work." },
-  { title:"Pretty Pickles", cat:"Packaging Design", year:"2024", role:"Graphic Designer", tools:"Illustrator, Photoshop", body:"Packaging identity for a small-batch artisan pickle brand. The design strikes a balance between handcrafted warmth and retail-ready clarity — personality-forward without sacrificing legibility or shelf presence." },
-  { title:"Solange: Movement & Memory", cat:"Editorial Design", year:"2024", role:"Graphic Designer", tools:"InDesign, Photoshop", body:"An editorial design project exploring the visual and sonic world of Solange Knowles. Conceived as a printed magazine spread, the work foregrounds mood, texture, and typographic voice — designed to feel like an extension of the music itself." },
-  { title:"Butcher's Crossing", cat:"Book Cover Design", year:"2024", role:"Graphic Designer", tools:"Illustrator, Photoshop", body:"A reimagined cover design for John Williams' Butcher's Crossing. The design channels the novel's themes of wilderness, obsession, and moral reckoning through restrained composition, deliberate type hierarchy, and considered image treatment." },
-  { title:"Call for Submission", cat:"Print / Poster", year:"2024", role:"Graphic Designer", tools:"InDesign, Illustrator", body:"A poster designed to attract and inspire emerging creative voices. Bold typographic hierarchy and purposeful layout communicate urgency and invitation — designed to be seen across a room before it's read up close." },
-  { title:"Budapest", cat:"Photography / Layout", year:"2024", role:"Graphic Designer", tools:"Lightroom, InDesign", body:"A photo essay and editorial layout documenting the visual texture and atmosphere of Budapest. Editorial in tone, restrained in approach — designed to let the images carry their own weight." },
-  { title:"Clements Insurance Ad", cat:"Advertising Design", year:"2024", role:"Graphic Designer", tools:"Photoshop, Illustrator", body:"Advertising campaign design for Clements Insurance, targeting internationally mobile audiences. The work prioritizes clear information hierarchy, trust-building visual language, and a layout system that translates across formats." },
-  { title:"Meow Mix", cat:"Brand / Packaging", year:"2024", role:"Graphic Designer", tools:"Illustrator, Photoshop", body:"A brand refresh concept for Meow Mix, exploring how an iconic consumer brand might evolve while protecting its core equity. Work included an updated packaging system, revised visual language, and a modernized logo approach." },
-  { title:"Joosy Summer", cat:"Brand Campaign", year:"2024", role:"Graphic Designer", tools:"Illustrator, Photoshop, After Effects", body:"Seasonal campaign design for a beverage brand concept. The work translates summer as a feeling — high energy, saturated, and immediate — into a cohesive visual campaign built for multiple touchpoints." },
-  { title:"Tempo of Type", cat:"Typography", year:"2024", role:"Graphic Designer", tools:"InDesign, Illustrator", body:"A self-initiated typographic study exploring rhythm, pacing, and timing in letterform. The project examines how type moves and breathes on a page — treating layout as choreography rather than arrangement." },
-  { title:"Outlier Studios", cat:"Brand Identity", year:"2024", role:"Graphic Designer", tools:"Illustrator, InDesign", body:"Full brand identity development for Outlier Studios, a creative production company. Deliverables included a primary mark, supporting type system, and comprehensive visual language designed to position the studio as a credible and independent creative voice." },
-  { title:"Rise N' Shine", cat:"Brand / Packaging", year:"2024", role:"Graphic Designer", tools:"Illustrator, Photoshop", body:"Branding and packaging design for a morning wellness brand. The visual system was built around warmth, optimism, and ritual — designed to become a daily object that people are genuinely glad to reach for." },
-  { title:"Sonic Youth", cat:"Poster Design", year:"2024", role:"Graphic Designer", tools:"Illustrator, Photoshop", body:"A tribute poster series for Sonic Youth, rooted in the visual culture of downtown New York's art and noise scenes. Deliberately raw, textural, and off-grid — designed to look like it was earned, not made." },
-  { title:"Book Sale", cat:"Print / Poster Design", year:"2024", role:"Graphic Designer", tools:"InDesign, Illustrator", body:"Event poster for an independent book sale. Clean grid structure and high typographic legibility carry the design — with just enough warmth to feel welcoming rather than institutional." },
-  { title:"Wedding Invitation", cat:"Print / Stationery", year:"2024", role:"Graphic Designer", tools:"InDesign, Illustrator", body:"A bespoke wedding invitation suite designed to feel like a keepsake from the moment it's held. Elegant, restrained, and deeply personal — every detail calibrated to reflect the couple it was made for." },
-  { title:"Hurricane Milton", cat:"Motion / News Graphics", year:"2024", role:"Graphic Designer", tools:"After Effects, Premiere Pro", body:"Motion graphics package for Hurricane Milton broadcast coverage. The work prioritizes immediate legibility, clear data visualization, and a visual system that communicates urgency without creating panic." },
-  { title:"Spring Swing", cat:"Event Design", year:"2024", role:"Graphic Designer", tools:"Illustrator, InDesign", body:"Brand and print collateral for a seasonal social event. The design system leads with energy and approachability — playful type, a considered color palette, and materials that make a strong first impression." },
-  { title:"Tripsitter", cat:"Brand / Digital Design", year:"2024", role:"Graphic Designer", tools:"Figma, Illustrator", body:"Brand identity and digital design for Tripsitter, a harm reduction information platform. The visual language is intentionally approachable, trustworthy, and unambiguous — designed to lower barriers for a population that needs clear, judgment-free information." },
-  { title:"Loyola Postcard", cat:"Print Design", year:"2024", role:"Graphic Designer", tools:"InDesign, Illustrator", body:"Institutional postcard design for Loyola University New Orleans. Clean, community-centered, and proud — designed to represent the institution with clarity and warmth." },
-  { title:"Cookies for Everyone", cat:"Brand / Packaging", year:"2024", role:"Graphic Designer", tools:"Illustrator, Photoshop", body:"Brand concept and packaging design for a cookie company built on inclusivity. Joyful, bold, and accessible — designed to feel like an invitation to everyone who picks it up." },
-];
 
-// Cursor
-const cursor = document.getElementById('cursor');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-});
-document.querySelectorAll('a, button, .project-card, .work-list-item, .skill-pill').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
-});
+  <!-- ════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-copy">© 2026 Mae Montero. All rights reserved.</span>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
 
-// Nav
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
-});
 
-// Scroll reveal
-const obs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 65);
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  <!-- ════════════════════════════════════════════
+       JAVASCRIPT — mobile nav + scroll animations
+  ════════════════════════════════════════════ -->
+  <script>
+    // ── Mobile menu toggle ──────────────────────
+    const menuBtn  = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
 
-// Overlay
-const overlay = document.getElementById('overlay');
-document.getElementById('overlayClose').addEventListener('click', close);
-overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.classList.toggle('open', isOpen);
+      menuBtn.setAttribute('aria-expanded', isOpen);
+    });
 
-function open(id) {
-  const p = projects[id];
-  if (!p) return;
-  document.getElementById('ocat').textContent = p.cat;
-  document.getElementById('otitle').textContent = p.title;
-  document.getElementById('ometa').innerHTML = `
-    <div><div class="meta-lbl">Year</div><div class="meta-val">${p.year}</div></div>
-    <div><div class="meta-lbl">Role</div><div class="meta-val">${p.role}</div></div>
-    <div><div class="meta-lbl">Tools</div><div class="meta-val">${p.tools}</div></div>
-  `;
-  document.getElementById('obody').innerHTML = `<p>${p.body}</p>`;
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function close() {
-  overlay.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-document.querySelectorAll('.project-card').forEach(c => c.addEventListener('click', () => {
-  const id = +c.dataset.id;
-  if (id === 99) { open(0); }
-  else open(id + 1);
-}));
-document.querySelectorAll('.work-list-item').forEach(c => c.addEventListener('click', () => open(+c.dataset.id + 1)));
-
-/* ── SVG handwriting animation ── */
-(function () {
-  var FONT_URL  = 'https://fonts.gstatic.com/s/birthstone/v16/8AtsGs2xO4yLRhy87sv_HLk.ttf';
-  var FONT_PX   = 165;
-  var LINE_GAP  = -45;  // px between Mae and Montero baselines (on top of font height)
-  var STROKE_W  = 4;
-  var SPEED     = 380;  // font-pixels per second
-  var WORD_GAP  = 0.45; // seconds between the two words
-  var NS        = 'http://www.w3.org/2000/svg';
-
-  var words = [
-    { text: 'Mae',     color: '#1A1410' },
-    { text: 'Montero', color: '#8B0000' }
-  ];
-
-  function fallback() {
-    var n = document.querySelector('.hero-name');
-    if (n) n.style.visibility = 'visible';
-  }
-
-  if (typeof opentype === 'undefined') { fallback(); return; }
-
-  opentype.load(FONT_URL, function (err, font) {
-    if (err) { fallback(); return; }
-
-    var allGlyphs = [];
-
-    words.forEach(function (word, wi) {
-      var x = 0;
-      var baseY = FONT_PX + wi * (FONT_PX + LINE_GAP);
-      word.text.split('').forEach(function (ch) {
-        var glyph = font.charToGlyph(ch);
-        var path  = glyph.getPath(x, baseY, FONT_PX);
-        allGlyphs.push({ path: path, color: word.color, wi: wi });
-        x += (glyph.advanceWidth / font.unitsPerEm) * FONT_PX;
+    // Close on any nav link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', false);
       });
     });
 
-    /* viewBox */
-    var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-    allGlyphs.forEach(function (g) {
-      var b = g.path.getBoundingBox();
-      if (b.x1 < minX) minX = b.x1; if (b.y1 < minY) minY = b.y1;
-      if (b.x2 > maxX) maxX = b.x2; if (b.y2 > maxY) maxY = b.y2;
-    });
-    var P = 10;
-    var vbX = minX - P, vbY = minY - P, vbW = maxX - minX + P*2, vbH = maxY - minY + P*2;
+    // ── Scroll fade-in animations ───────────────
+    const fadeEls = document.querySelectorAll('.fade-in');
 
-    /* build SVG */
-    var svg = document.createElementNS(NS, 'svg');
-    svg.setAttribute('viewBox', [vbX, vbY, vbW, vbH].join(' '));
-    svg.setAttribute('role', 'img');
-    svg.setAttribute('aria-label', 'Mae Montero');
-    svg.className = 'hero-name-svg';
-    svg.style.maxWidth = vbW + 'px';
-
-    var pathEls = [];
-    allGlyphs.forEach(function (g) {
-      var el = document.createElementNS(NS, 'path');
-      el.setAttribute('d', g.path.toPathData(2));
-      el.setAttribute('fill', 'none');
-      el.setAttribute('stroke', g.color);
-      el.setAttribute('stroke-width', String(STROKE_W));
-      el.setAttribute('stroke-linecap', 'round');
-      el.setAttribute('stroke-linejoin', 'round');
-      svg.appendChild(el);
-      pathEls.push({ el: el, color: g.color, wi: g.wi });
-    });
-
-    /* swap h1 → svg */
-    var h1 = document.querySelector('.hero-name');
-    h1.parentNode.insertBefore(svg, h1);
-    h1.parentNode.removeChild(h1);
-
-    /* sequence animations */
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        var delay = 0.4;
-        var prevWi = 0;
-
-        pathEls.forEach(function (item) {
-          var el  = item.el;
-          var len = el.getTotalLength();
-          if (!len) return;
-          var dur = len / SPEED;
-
-          if (item.wi > prevWi) { delay += WORD_GAP; prevWi = item.wi; }
-
-          el.style.strokeDasharray  = len;
-          el.style.strokeDashoffset = len;
-
-          ;(function (pathEl, startS, durS, color) {
-            setTimeout(function () {
-              pathEl.style.transition = 'stroke-dashoffset ' + durS.toFixed(3) + 's linear';
-              pathEl.style.strokeDashoffset = '0';
-            }, startS * 1000);
-
-            setTimeout(function () {
-              pathEl.style.transition = 'fill 0.18s ease, stroke-width 0.18s ease';
-              pathEl.style.fill        = color;
-              pathEl.style.strokeWidth = '0';
-            }, (startS + durS) * 1000);
-          })(el, delay, dur, item.color);
-
-          delay += dur;
-        });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // animate once
+        }
       });
-    });
-  });
-})();
-</script>
+    }, { threshold: 0.08 });
+
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+
 </body>
 </html>
