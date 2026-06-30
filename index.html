@@ -337,9 +337,9 @@
       grid-template-columns: 1.15fr 1fr;
     }
 
-    /* Left side: simulated website preview */
+    /* Left side: real website screenshot */
     .feature-preview {
-      background: #085041;
+      background: #1a1a2e;
       position: relative;
       min-height: 420px;
       overflow: hidden;
@@ -350,72 +350,42 @@
       left: 28px;
       right: 28px;
       bottom: 0;
-      background: #0F6E56;
       border-radius: 10px 10px 0 0;
       overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
     }
     .site-browser-bar {
-      background: #064032;
-      height: 30px;
+      background: #2a2a3e;
+      height: 32px;
       display: flex;
       align-items: center;
       padding: 0 12px;
       gap: 6px;
     }
-    .site-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.18); }
+    .site-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .site-dot-red { background: #ff5f57; }
+    .site-dot-yellow { background: #febc2e; }
+    .site-dot-green { background: #28c840; }
     .site-url-bar {
       flex: 1;
-      height: 14px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 4px;
+      height: 18px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 6px;
       margin: 0 8px;
-    }
-    .site-body { overflow: hidden; }
-    .site-nav {
-      background: rgba(8,64,50,0.9);
-      height: 44px;
       display: flex;
       align-items: center;
-      padding: 0 18px;
-      justify-content: space-between;
+      padding: 0 10px;
     }
-    .site-nav-logo { width: 88px; height: 14px; background: rgba(255,255,255,0.65); border-radius: 2px; }
-    .site-nav-links { display: flex; gap: 10px; }
-    .site-nav-link { width: 30px; height: 8px; background: rgba(255,255,255,0.25); border-radius: 2px; }
-    .site-nav-cta { width: 64px; height: 22px; border-radius: 11px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); }
-    .site-hero {
-      padding: 22px 20px 14px;
+    .site-url-text {
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+      font-family: var(--font-sans);
+      letter-spacing: 0.02em;
     }
-    .site-hero-h {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      font-weight: 500;
-      color: var(--white);
-      line-height: 1.3;
-      margin-bottom: 8px;
-    }
-    .site-hero-sub {
-      font-size: 11px;
-      color: rgba(255,255,255,0.58);
-      line-height: 1.6;
-      margin-bottom: 12px;
-      max-width: 280px;
-    }
-    .site-cta-btn {
-      display: inline-block;
-      background: var(--white);
-      color: #0F6E56;
-      font-size: 9px;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 4px;
-      letter-spacing: 0.07em;
-    }
-    .site-img-placeholder {
-      margin-top: 14px;
-      height: 70px;
-      background: rgba(29, 158, 117, 0.45);
+    .site-screenshot {
+      width: 100%;
+      display: block;
+      border: none;
     }
 
     /* Right side: text content */
@@ -872,33 +842,22 @@
 
       <div class="feature-card fade-in">
 
-        <!-- Simulated site preview (left panel) -->
+        <!-- Live website screenshot (left panel) -->
         <div class="feature-preview">
           <div class="site-browser">
             <div class="site-browser-bar">
-              <div class="site-dot"></div>
-              <div class="site-dot"></div>
-              <div class="site-dot"></div>
-              <div class="site-url-bar"></div>
-            </div>
-            <div class="site-body">
-              <div class="site-nav">
-                <div class="site-nav-logo"></div>
-                <div class="site-nav-links">
-                  <div class="site-nav-link"></div>
-                  <div class="site-nav-link"></div>
-                  <div class="site-nav-link"></div>
-                  <div class="site-nav-link"></div>
-                </div>
-                <div class="site-nav-cta"></div>
+              <div class="site-dot site-dot-red"></div>
+              <div class="site-dot site-dot-yellow"></div>
+              <div class="site-dot site-dot-green"></div>
+              <div class="site-url-bar">
+                <span class="site-url-text">nolaparksforall.org</span>
               </div>
-              <div class="site-hero">
-                <p class="site-hero-h">Empowering Communities<br>Through Action</p>
-                <p class="site-hero-sub">Parks For All New Orleans is a 501(c)3 organization advocating for equitable, well-funded public parks and green spaces across the city.</p>
-                <span class="site-cta-btn">LEARN MORE</span>
-              </div>
-              <div class="site-img-placeholder"></div>
             </div>
+            <img
+              class="site-screenshot"
+              src="https://image.thum.io/get/width/800/crop/600/https://www.nolaparksforall.org/"
+              alt="Nola Parks for All website screenshot"
+            >
           </div>
         </div>
 
