@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Mae Montero — Portfolio interactions
+   Mae Montero â€” Portfolio interactions
    Scroll reveal, case-study routing/overlay, nav hide-on-scroll, cursor dot
    ========================================================================== */
 (function () {
@@ -35,6 +35,7 @@
     initNavHide();
     initReveal();
     initHeroLines();
+    initKineticHero();
     initCaseStudies();
   });
 
@@ -109,6 +110,33 @@
     if (!hero) return;
     requestAnimationFrame(function () {
       hero.classList.add('in-view');
+    });
+  }
+
+  /* ---------- kinetic letter-pop headline ---------- */
+  function initKineticHero() {
+    var spans = document.querySelectorAll('.hero h1 .kinetic');
+    if (!spans.length) return;
+    var delayStep = 35; // ms between letters
+    var i = 0;
+    spans.forEach(function (span) {
+      var text = span.getAttribute('data-text') || span.textContent;
+      var frag = document.createDocumentFragment();
+      for (var c = 0; c < text.length; c++) {
+        var ch = text[c];
+        if (ch === ' ') {
+          frag.appendChild(document.createTextNode(' '));
+          continue;
+        }
+        var el = document.createElement('span');
+        el.className = 'ch';
+        el.style.setProperty('--d', (i * delayStep) + 'ms');
+        el.textContent = ch;
+        frag.appendChild(el);
+        i++;
+      }
+      span.textContent = '';
+      span.appendChild(frag);
     });
   }
 
