@@ -92,13 +92,13 @@ button{ font-family:inherit; cursor:pointer; }
 /* ---------- hero ---------- */
 .hero{
   display:flex; flex-direction:column; justify-content:center;
-  padding:110px 0 48px;
+  padding:110px 0 32px;
   position:relative;
 }
 .hero .eyebrow{
   display:inline-flex; align-items:center; gap:10px;
   font-size:0.75rem; text-transform:uppercase; letter-spacing:0.18em; font-weight:700;
-  color:var(--red); margin-bottom:14px;
+  color:var(--red); margin-bottom:22px;
 }
 .hero .eyebrow::before{
   content:''; width:34px; height:2px; background:var(--red); display:inline-block;
@@ -113,7 +113,7 @@ button{ font-family:inherit; cursor:pointer; }
   display:inline-block;
   opacity:0;
   transform:translateY(46px) scale(.55) rotate(-9deg);
-  animation:chPop .75s cubic-bezier(.34,1.56,.64,1) forwards;
+  animation:chPop 1.05s cubic-bezier(.34,1.56,.64,1) forwards;
   animation-delay:var(--d, 0ms);
   will-change:transform, opacity;
 }
@@ -126,7 +126,7 @@ button{ font-family:inherit; cursor:pointer; }
 }
 
 .hero-sub{
-  display:grid; grid-template-columns: minmax(0,760px) auto; gap:56px; margin-top:48px; align-items:stretch;
+  display:grid; grid-template-columns: minmax(0,760px) auto; gap:56px; margin-top:40px; align-items:stretch;
 }
 .hero-blurb{
   font-size:1.08rem; line-height:1.7; color:var(--ink-soft); max-width:72ch;
@@ -148,6 +148,7 @@ button{ font-family:inherit; cursor:pointer; }
 
 /* ---------- category sections ---------- */
 .category{ padding:120px 0 40px; }
+#web-social{ padding-top:76px; }
 .category-head{
   display:flex; align-items:flex-end; justify-content:space-between; gap:20px;
   margin-bottom:56px; border-bottom:3px solid var(--ink); padding-bottom:18px;
