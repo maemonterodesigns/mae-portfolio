@@ -117,7 +117,7 @@
   function initKineticHero() {
     var spans = document.querySelectorAll('.hero h1 .kinetic');
     if (!spans.length) return;
-    var delayStep = 35; // ms between letters
+    var delayStep = 60; // ms between letters
     var i = 0;
     spans.forEach(function (span) {
       var text = span.getAttribute('data-text') || span.textContent;
