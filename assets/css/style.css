@@ -126,11 +126,10 @@ button{ font-family:inherit; cursor:pointer; }
 }
 
 .hero-sub{
-  display:grid; grid-template-columns: minmax(0,600px) auto; gap:70px; margin-top:38px; align-items:start;
-  justify-content:space-between;
+  display:grid; grid-template-columns: minmax(0,760px) auto; gap:56px; margin-top:48px; align-items:stretch;
 }
 .hero-blurb{
-  font-size:1.05rem; line-height:1.6; color:var(--ink-soft); max-width:58ch;
+  font-size:1.08rem; line-height:1.7; color:var(--ink-soft); max-width:72ch;
   opacity:0; transform:translateY(16px); transition:opacity .8s var(--ease) .3s, transform .8s var(--ease) .3s;
 }
 .hero.in-view .hero-blurb{ opacity:1; transform:translateY(0); }
@@ -138,7 +137,7 @@ button{ font-family:inherit; cursor:pointer; }
 .hero-meta{
   opacity:0; transform:translateY(16px); transition:opacity .8s var(--ease) .45s, transform .8s var(--ease) .45s;
   font-size:0.82rem;
-  justify-self:end; align-self:start;
+  justify-self:end; align-self:end;
   padding-left:28px; border-left:2px solid var(--ink);
   min-width:190px;
 }
