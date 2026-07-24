@@ -312,7 +312,7 @@ body.cs-open{ overflow:hidden; }
 .contact .category-head{ margin-bottom:40px; }
 .contact-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:60px; }
 .contact h3{
-  font-size:clamp(2rem,6vw,3.6rem); max-width:14ch; margin-bottom:24px;
+  font-size:clamp(1.5rem,3vw,2.1rem); max-width:20ch; margin-bottom:18px;
 }
 .contact p.lead{ font-size:1.05rem; color:var(--ink-soft); max-width:52ch; }
 .contact-list{ list-style:none; margin:32px 0 0; padding:0; display:flex; flex-direction:column; gap:2px; }
