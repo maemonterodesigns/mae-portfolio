@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Mae Montero â€” Portfolio interactions
+   Mae Montero — Portfolio interactions
    Scroll reveal, case-study routing/overlay, nav hide-on-scroll, cursor dot
    ========================================================================== */
 (function () {
@@ -33,6 +33,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     initCursor();
     initNavHide();
+    initNavToggle();
     initReveal();
     initHeroLines();
     initKineticHero();
@@ -77,6 +78,27 @@
       }
       lastY = y;
     }, { passive: true });
+  }
+
+  /* ---------- mobile nav toggle ---------- */
+  function initNavToggle() {
+    var toggle = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.site-nav ul');
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    menu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        menu.classList.remove('is-open');
+        toggle.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
   }
 
   /* ---------- scroll reveal ---------- */
