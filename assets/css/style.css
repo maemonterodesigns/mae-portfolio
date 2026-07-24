@@ -56,11 +56,10 @@ a, button, .project-card{ -webkit-tap-highlight-color:transparent; }
 .cursor-dot{
   position:fixed; top:0; left:0; width:14px; height:14px; border-radius:50%;
   background:var(--red); pointer-events:none; z-index:9999; mix-blend-mode:multiply;
-  transform:translate(-50%,-50%); transition:transform .15s var(--ease), opacity .2s;
+  transform:translate(-50%,-50%); transition:opacity .2s;
   opacity:0;
 }
 .cursor-dot.active{ opacity:1; }
-.cursor-dot.grow{ transform:translate(-50%,-50%) scale(3); }
 @media (hover:none){ .cursor-dot{ display:none; } }
 
 /* ---------- nav ---------- */
