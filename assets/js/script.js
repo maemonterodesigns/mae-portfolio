@@ -45,28 +45,21 @@
     var dot = document.createElement('div');
     dot.className = 'cursor-dot';
     document.body.appendChild(dot);
-    var raf = null, x = 0, y = 0, cx = 0, cy = 0;
 
-    window.addEventListener('mousemove', function (e) {
-      x = e.clientX; y = e.clientY;
-      dot.classList.add('active');
-      if (!raf) raf = requestAnimationFrame(render);
-    });
-
-    function render() {
-      cx += (x - cx) * 0.35;
-      cy += (y - cy) * 0.35;
-      dot.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)';
-      if (Math.abs(x - cx) > 0.2 || Math.abs(y - cy) > 0.2) {
-        raf = requestAnimationFrame(render);
-      } else {
-        raf = null;
-      }
+    var px = 0, py = 0, scale = 1;
+    function applyTransform() {
+      dot.style.transform = 'translate(' + px + 'px,' + py + 'px) translate(-50%,-50%) scale(' + scale + ')';
     }
 
+    window.addEventListener('mousemove', function (e) {
+      px = e.clientX; py = e.clientY;
+      dot.classList.add('active');
+      applyTransform();
+    });
+
     document.querySelectorAll('a, button, .project-card').forEach(function (el) {
-      el.addEventListener('mouseenter', function () { dot.classList.add('grow'); });
-      el.addEventListener('mouseleave', function () { dot.classList.remove('grow'); });
+      el.addEventListener('mouseenter', function () { scale = 3; dot.classList.add('grow'); applyTransform(); });
+      el.addEventListener('mouseleave', function () { scale = 1; dot.classList.remove('grow'); applyTransform(); });
     });
   }
 
