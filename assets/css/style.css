@@ -156,15 +156,15 @@ button{ font-family:inherit; cursor:pointer; color:inherit; background:none; bor
 .hero.in-view .hero-blurb{ opacity:1; transform:translateY(0); }
 
 .hero-meta{
-  grid-column:span 4; align-self:end;
+  grid-column:span 4; align-self:end; text-align:right;
   opacity:0; transform:translateY(16px); transition:opacity .8s var(--ease) .45s, transform .8s var(--ease) .45s;
   font-size:0.82rem;
-  padding-left:32px; border-left:2px solid var(--ink);
+  padding-right:32px; border-right:2px solid var(--ink);
 }
 .hero.in-view .hero-meta{ opacity:1; transform:translateY(0); }
-.hero-meta dl{ display:grid; grid-template-columns:auto 1fr; gap:var(--unit) 16px; margin:0; }
-.hero-meta dt{ text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); font-weight:600; }
-.hero-meta dd{ margin:0; font-weight:600; }
+.hero-meta dl{ display:grid; grid-template-columns:1fr auto; gap:var(--unit) 16px; margin:0; }
+.hero-meta dt{ text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); font-weight:600; text-align:right; }
+.hero-meta dd{ margin:0; font-weight:600; text-align:right; }
 
 /* ---------- category sections ---------- */
 .category{ padding:120px 0 var(--grid); }
@@ -187,7 +187,7 @@ button{ font-family:inherit; cursor:pointer; color:inherit; background:none; bor
 }
 .project-card{
   grid-column:span 4;
-  background:var(--cream-card); border:2px solid var(--ink); padding:0; margin:0; text-align:left;
+  background:var(--cream-card); border:none; padding:0; margin:0; text-align:left;
   position:relative; overflow:hidden; display:block; width:100%;
   opacity:0; transform:translateY(30px); transition:opacity .6s var(--ease), transform .6s var(--ease);
 }
@@ -270,8 +270,9 @@ body.cs-open{ overflow:hidden; }
 }
 .cs-eyebrow::before{ content:''; width:32px; height:2px; background:var(--red); }
 .cs-eyebrow .readtime{
-  margin-left:auto; color:var(--ink-soft); font-weight:600; text-transform:none;
-  letter-spacing:0; font-size:0.8rem;
+  margin-left:auto; color:var(--ink); font-weight:700; text-transform:uppercase;
+  letter-spacing:0.04em; font-size:0.72rem;
+  border:2px solid var(--ink); padding:6px 12px; border-radius:2px;
 }
 .cs-hero h2{ font-size:clamp(2.2rem,6vw,4.4rem); max-width:16ch; }
 .cs-hero .cs-summary{ margin-top:24px; font-size:1.1rem; max-width:60ch; color:var(--ink-soft); }
@@ -350,14 +351,25 @@ body.cs-open{ overflow:hidden; }
 .contact-list a:hover .arrow{ transform:translate(5px,-5px); }
 .contact-side{ align-self:start; }
 .contact-side .avail{
-  border:2px solid var(--ink); padding:24px; background:var(--cream-card);
+  border:2px solid var(--ink); padding:24px 24px 24px 28px; background:var(--cream-card);
+  position:relative; overflow:hidden;
+}
+.contact-side .avail::before{
+  content:''; position:absolute; top:0; left:0; width:6px; height:100%; background:var(--red);
+}
+.contact-side .avail p:first-child{
+  display:flex; align-items:center; gap:10px;
+}
+.contact-side .avail p:first-child strong{
+  font-size:1.15rem; text-transform:uppercase; letter-spacing:0.03em;
 }
 .contact-side .avail .dot{
-  width:8px; height:8px; background:var(--red); border-radius:50%; display:inline-block; margin-right:var(--unit);
+  width:13px; height:13px; background:var(--red); border-radius:50%; display:inline-block; flex-shrink:0;
   animation:pulse 1.6s infinite;
 }
 @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:0.3; } }
 .contact-side .avail p{ margin:16px 0 0; font-size:0.85rem; color:var(--ink-soft); }
+.contact-side .avail p:first-child{ margin-top:0; }
 
 footer.site-footer{
   border-top:2px solid var(--ink); padding:24px 0; display:flex; justify-content:space-between;
@@ -382,7 +394,9 @@ footer.site-footer{
 
   .hero-blurb, .hero-meta{ grid-column:span 12; }
   .hero-sub{ gap:24px; }
-  .hero-meta{ border-left:none; padding-left:0; border-top:2px solid var(--ink); padding-top:16px; }
+  .hero-meta{ border-right:none; padding-right:0; border-top:2px solid var(--ink); padding-top:16px; text-align:left; }
+  .hero-meta dl{ grid-template-columns:auto 1fr; }
+  .hero-meta dt, .hero-meta dd{ text-align:left; }
 
   .project-card{ grid-column:span 6; }
 
