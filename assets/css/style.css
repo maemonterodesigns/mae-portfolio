@@ -8,10 +8,10 @@
    - content grid: 12 columns, used by the hero, project grid, case-study
      narrative/gallery, and contact section, so column edges always line
      up with each other across sections
-   - background paper-grid tiles at 40px (5 units) and is centered on the
-     viewport; since half the container width (640px) is an exact multiple
-     of 40px, the wrap's edges always land exactly on a background line,
-     at any viewport width
+   - no visible background texture — the grid is structural only. Every
+     section, card, and column is positioned on the same invisible 12-column
+     / 8px-unit grid so elements line up with each other, without drawing
+     grid lines on the page
    - the nav and case-study topbar use the same .wrap as everything else
      (instead of their own fixed padding), so the logo and back/close
      controls line up with the content below them
@@ -40,11 +40,6 @@ html{ scroll-behavior:smooth; }
 body{
   margin:0;
   background-color:var(--paper);
-  background-image:
-    linear-gradient(var(--paper-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
-  background-size: var(--grid) var(--grid);
-  background-position: center top;
   color:var(--ink);
   font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size:16px;
@@ -201,11 +196,11 @@ button{ font-family:inherit; cursor:pointer; color:inherit; background:none; bor
   position:relative; aspect-ratio:1/1; overflow:hidden; background:#e7e1d2;
 }
 .project-card .thumb img{
-  width:100%; height:100%; object-fit:cover; transform:scale(1.03);
+  width:100%; height:100%; object-fit:contain; object-position:center;
   transition:transform .7s var(--ease), filter .5s var(--ease);
   filter:grayscale(45%) contrast(1.02);
 }
-.project-card:hover .thumb img{ transform:scale(1.1); filter:grayscale(0%); }
+.project-card:hover .thumb img{ transform:scale(1.05); filter:grayscale(0%); }
 .project-card .thumb::after{
   content:''; position:absolute; inset:0;
   background:linear-gradient(to top, rgba(20,18,15,0.55), transparent 55%);
@@ -242,11 +237,6 @@ button{ font-family:inherit; cursor:pointer; color:inherit; background:none; bor
   overflow-y:auto; -webkit-overflow-scrolling:touch;
   transform:translateY(100%); visibility:hidden;
   transition:transform .55s var(--ease), visibility 0s linear .55s;
-  background-image:
-    linear-gradient(var(--paper-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
-  background-size:var(--grid) var(--grid);
-  background-position:center top;
 }
 .case-study.is-open{
   transform:translateY(0); visibility:visible;
@@ -279,6 +269,10 @@ body.cs-open{ overflow:hidden; }
   display:flex; align-items:center; gap:var(--unit); margin-bottom:16px;
 }
 .cs-eyebrow::before{ content:''; width:32px; height:2px; background:var(--red); }
+.cs-eyebrow .readtime{
+  margin-left:auto; color:var(--ink-soft); font-weight:600; text-transform:none;
+  letter-spacing:0; font-size:0.8rem;
+}
 .cs-hero h2{ font-size:clamp(2.2rem,6vw,4.4rem); max-width:16ch; }
 .cs-hero .cs-summary{ margin-top:24px; font-size:1.1rem; max-width:60ch; color:var(--ink-soft); }
 
@@ -287,7 +281,7 @@ body.cs-open{ overflow:hidden; }
   border-top:2px solid var(--ink); border-bottom:2px solid var(--ink);
   margin:var(--grid) 0 0; padding:24px 0;
 }
-.cs-meta-bar div{ grid-column:span 4; display:flex; flex-direction:column; gap:var(--unit); }
+.cs-meta-bar div{ grid-column:span 3; display:flex; flex-direction:column; gap:var(--unit); }
 .cs-meta-bar dt{ font-size:0.68rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-soft); font-weight:700; }
 .cs-meta-bar dd{ margin:0; font-weight:600; font-size:0.95rem; }
 .cs-meta-bar .chips{ display:flex; flex-wrap:wrap; gap:var(--unit); }
