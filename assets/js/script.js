@@ -38,7 +38,28 @@
     initHeroLines();
     initKineticHero();
     initCaseStudies();
+    initViewAllToggles();
   });
+
+  /* ---------- "view all" project grid toggles ---------- */
+  function initViewAllToggles() {
+    document.querySelectorAll('.view-all-btn').forEach(function (btn) {
+      var grid = btn.previousElementSibling;
+      if (!grid || !grid.classList.contains('project-grid')) return;
+      btn.addEventListener('click', function () {
+        var isOpen = grid.classList.toggle('show-all');
+        btn.classList.toggle('is-open', isOpen);
+        btn.querySelector('.label').textContent = isOpen
+          ? btn.getAttribute('data-less-label')
+          : btn.getAttribute('data-more-label');
+        if (isOpen) {
+          grid.querySelectorAll('.project-card').forEach(function (card) {
+            card.classList.add('in-view');
+          });
+        }
+      });
+    });
+  }
 
   /* ---------- custom cursor dot ---------- */
   function initCursor() {

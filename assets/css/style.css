@@ -156,15 +156,15 @@ button{ font-family:inherit; cursor:pointer; color:inherit; background:none; bor
 .hero.in-view .hero-blurb{ opacity:1; transform:translateY(0); }
 
 .hero-meta{
-  grid-column:span 4; align-self:end; text-align:right;
+  grid-column:span 4; align-self:end; text-align:left;
   opacity:0; transform:translateY(16px); transition:opacity .8s var(--ease) .45s, transform .8s var(--ease) .45s;
   font-size:0.82rem;
-  padding-right:32px; border-right:2px solid var(--ink);
+  padding-left:32px; border-left:2px solid var(--ink);
 }
 .hero.in-view .hero-meta{ opacity:1; transform:translateY(0); }
-.hero-meta dl{ display:grid; grid-template-columns:1fr auto; gap:var(--unit) 16px; margin:0; }
-.hero-meta dt{ text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); font-weight:600; text-align:right; }
-.hero-meta dd{ margin:0; font-weight:600; text-align:right; }
+.hero-meta dl{ display:grid; grid-template-columns:auto 1fr; gap:var(--unit) 16px; margin:0; }
+.hero-meta dt{ text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); font-weight:600; text-align:left; }
+.hero-meta dd{ margin:0; font-weight:600; text-align:left; }
 
 /* ---------- category sections ---------- */
 .category{ padding:120px 0 var(--grid); }
@@ -183,8 +183,21 @@ button{ font-family:inherit; cursor:pointer; color:inherit; background:none; bor
 
 /* ---------- project grid / cards ---------- */
 .project-grid{
-  display:grid; grid-template-columns:repeat(12, 1fr); gap:var(--gutter);
+  display:grid; grid-template-columns:repeat(12, 1fr); gap:4px;
 }
+.project-grid .project-card:nth-child(n+4){ display:none; }
+.project-grid.show-all .project-card:nth-child(n+4){ display:block; }
+
+.view-all-btn{
+  display:flex; align-items:center; justify-content:center; gap:var(--unit);
+  margin:40px auto 0; padding:14px 28px; border:2px solid var(--ink); background:none;
+  font-family:inherit; font-size:0.8rem; font-weight:700; color:var(--ink);
+  text-transform:uppercase; letter-spacing:0.08em; cursor:pointer;
+  transition:background .3s var(--ease), color .3s var(--ease);
+}
+.view-all-btn:hover{ background:var(--ink); color:var(--paper); }
+.view-all-btn .arrow{ display:inline-block; transition:transform .3s var(--ease); }
+.view-all-btn.is-open .arrow{ transform:rotate(180deg); }
 .project-card{
   grid-column:span 4;
   background:var(--cream-card); border:none; padding:0; margin:0; text-align:left;
@@ -196,11 +209,11 @@ button{ font-family:inherit; cursor:pointer; color:inherit; background:none; bor
   position:relative; aspect-ratio:1/1; overflow:hidden; background:#e7e1d2;
 }
 .project-card .thumb img{
-  width:100%; height:100%; object-fit:contain; object-position:center;
+  width:100%; height:100%; object-fit:cover; object-position:center;
   transition:transform .7s var(--ease), filter .5s var(--ease);
   filter:grayscale(45%) contrast(1.02);
 }
-.project-card:hover .thumb img{ transform:scale(1.05); filter:grayscale(0%); }
+.project-card:hover .thumb img{ transform:scale(1.06); filter:grayscale(0%); }
 .project-card .thumb::after{
   content:''; position:absolute; inset:0;
   background:linear-gradient(to top, rgba(20,18,15,0.55), transparent 55%);
@@ -208,11 +221,6 @@ button{ font-family:inherit; cursor:pointer; color:inherit; background:none; bor
 }
 .project-card:hover .thumb::after{ opacity:1; }
 
-.project-card .card-index{
-  position:absolute; top:16px; left:16px; z-index:2;
-  font-family:'Archivo Black',sans-serif; font-size:0.85rem; color:var(--paper);
-  background:var(--red); padding:4px 10px;
-}
 .project-card .card-info{
   padding:24px; display:flex; flex-direction:column; gap:var(--unit);
 }
@@ -303,13 +311,14 @@ body.cs-open{ overflow:hidden; }
 
 .cs-narrative{ display:grid; grid-template-columns:repeat(12, 1fr); gap:var(--gutter); margin:56px 0; }
 .cs-narrative > div{ grid-column:span 4; }
+.cs-narrative > div.cs-wide{ grid-column:span 8; }
 .cs-narrative h4{
   font-size:0.95rem; color:var(--red); margin-bottom:16px; display:flex; align-items:center; gap:var(--unit);
 }
 .cs-narrative h4 .n{ font-family:'Archivo Black',sans-serif; }
 .cs-narrative p{ margin:0; font-size:0.95rem; color:var(--ink-soft); }
 
-.cs-links{ display:flex; flex-wrap:wrap; gap:16px; margin:16px 0 64px; }
+.cs-links{ display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin:16px 0 64px; }
 .cs-btn{
   display:inline-flex; align-items:center; gap:var(--unit); padding:16px 24px; border:2px solid var(--ink);
   font-size:0.8rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:700;
@@ -394,9 +403,7 @@ footer.site-footer{
 
   .hero-blurb, .hero-meta{ grid-column:span 12; }
   .hero-sub{ gap:24px; }
-  .hero-meta{ border-right:none; padding-right:0; border-top:2px solid var(--ink); padding-top:16px; text-align:left; }
-  .hero-meta dl{ grid-template-columns:auto 1fr; }
-  .hero-meta dt, .hero-meta dd{ text-align:left; }
+  .hero-meta{ border-left:none; padding-left:0; border-top:2px solid var(--ink); padding-top:16px; }
 
   .project-card{ grid-column:span 6; }
 
