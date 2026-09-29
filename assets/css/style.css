@@ -112,7 +112,7 @@ button{ font-family:inherit; cursor:pointer; color:inherit; background:none; bor
 /* ---------- hero ---------- */
 .hero{
   display:flex; flex-direction:column; justify-content:center;
-  padding:120px 0 var(--grid);
+  padding:96px 0 24px;
   position:relative;
 }
 .hero .eyebrow{
@@ -155,23 +155,12 @@ button{ font-family:inherit; cursor:pointer; color:inherit; background:none; bor
 }
 .hero.in-view .hero-blurb{ opacity:1; transform:translateY(0); }
 
-.hero-meta{
-  grid-column:span 4; align-self:end; text-align:left;
-  opacity:0; transform:translateY(16px); transition:opacity .8s var(--ease) .45s, transform .8s var(--ease) .45s;
-  font-size:0.82rem;
-  padding-left:32px; border-left:2px solid var(--ink);
-}
-.hero.in-view .hero-meta{ opacity:1; transform:translateY(0); }
-.hero-meta dl{ display:grid; grid-template-columns:auto 1fr; gap:var(--unit) 16px; margin:0; }
-.hero-meta dt{ text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); font-weight:600; text-align:left; }
-.hero-meta dd{ margin:0; font-weight:600; text-align:left; }
-
 /* ---------- category sections ---------- */
-.category{ padding:120px 0 var(--grid); }
-#web-social{ padding-top:80px; }
+.category{ padding:64px 0 24px; }
+#web-social{ padding-top:40px; }
 .category-head{
   display:flex; align-items:flex-end; justify-content:space-between; gap:24px;
-  margin-bottom:56px; border-bottom:3px solid var(--ink); padding-bottom:16px;
+  margin-bottom:40px; border-bottom:3px solid var(--ink); padding-bottom:16px;
   opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease), transform .7s var(--ease);
 }
 .category-head.in-view{ opacity:1; transform:translateY(0); }
@@ -271,7 +260,7 @@ body.cs-open{ overflow:hidden; }
 }
 .cs-topbar .cs-close:hover{ background:var(--red); border-color:var(--red); color:var(--paper); transform:rotate(90deg); }
 
-.cs-hero{ padding:80px 0 var(--grid); }
+.cs-hero{ padding:56px 0 24px; }
 .cs-eyebrow{
   font-size:0.75rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--red); font-weight:700;
   display:flex; align-items:center; gap:var(--unit); margin-bottom:16px;
@@ -298,18 +287,18 @@ body.cs-open{ overflow:hidden; }
   background:var(--ink); color:var(--paper); font-size:0.72rem; padding:4px 8px; text-transform:uppercase; letter-spacing:0.04em;
 }
 
-.cs-figure{ margin:48px 0; }
+.cs-figure{ margin:32px 0; }
 .cs-figure img, .cs-figure video{
   width:100%; border:2px solid var(--ink); background:#e7e1d2;
 }
 .cs-figure figcaption{
   margin-top:var(--unit); font-size:0.78rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em;
 }
-.cs-gallery{ display:grid; grid-template-columns:repeat(12, 1fr); gap:var(--gutter); margin:48px 0; align-items:start; }
+.cs-gallery{ display:grid; grid-template-columns:repeat(12, 1fr); gap:var(--gutter); margin:32px 0; align-items:start; }
 .cs-gallery img{ grid-column:span 6; border:2px solid var(--ink); width:100%; height:auto; display:block; object-fit:contain; background:#e7e1d2; }
 .cs-gallery .full{ grid-column:1 / -1; }
 
-.cs-narrative{ display:grid; grid-template-columns:repeat(12, 1fr); gap:var(--gutter); margin:56px 0; }
+.cs-narrative{ display:grid; grid-template-columns:repeat(12, 1fr); gap:var(--gutter); margin:40px 0; }
 .cs-narrative > div{ grid-column:span 4; }
 .cs-narrative > div.cs-wide{ grid-column:span 8; }
 .cs-narrative h4{
@@ -340,7 +329,7 @@ body.cs-open{ overflow:hidden; }
 .cs-nextprev .next{ text-align:right; align-items:flex-end; }
 
 /* ---------- about / contact ---------- */
-.contact{ padding:120px 0 80px; }
+.contact{ padding:64px 0 56px; }
 .contact .category-head{ margin-bottom:40px; }
 .contact-grid{ display:grid; grid-template-columns:repeat(12, 1fr); gap:var(--gutter); }
 .contact-grid > div:first-child{ grid-column:span 7; }
@@ -401,9 +390,8 @@ footer.site-footer{
   .site-nav ul a{ display:block; padding:16px var(--grid); }
   .site-nav ul a::after{ display:none; }
 
-  .hero-blurb, .hero-meta{ grid-column:span 12; }
+  .hero-blurb{ grid-column:span 12; }
   .hero-sub{ gap:24px; }
-  .hero-meta{ border-left:none; padding-left:0; border-top:2px solid var(--ink); padding-top:16px; }
 
   .project-card{ grid-column:span 6; }
 
